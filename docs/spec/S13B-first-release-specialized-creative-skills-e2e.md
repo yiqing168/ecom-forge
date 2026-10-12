@@ -22,7 +22,7 @@
 
 三项均有输入证据、转译范围、建造或绘画方法及定向修改的区别，按独立 primary 交付，不以颜色或普通纹理变体凑入口。纸雕浮境因用户实测效果不佳，于 2026-10-11 按用户要求删除其正文、评测数据与 manifest 配置。珐琅纪念章与尺度奇境留作候补，前者输入适配较窄，后者比例、肢体和接触风险更高。
 
-研究筛查了公开仓库的 541 条记录、169 张候选成图和 51 条完整提示词，使用固定版本 `5cb9109ca2d29476f8e34dbc0cdb43607bdd3f77`。方法重新原创编写，不复制第三方正文、品牌、IP、署名或示例图片进入内容包。详细证据保留在本地忽略的 `docs/research/46-social-art-skill-case-selection-2026-10-10.md`，正式实现与验收不依赖该文件。仓库样图不是本工程实测，亦无可核验的逐案例流量依据。
+内容包只交付具有明确授权的创作知识与评测素材，不包含未授权的第三方正文、品牌、IP、署名或示例图片。艺术效果与传播表现须由本工程真实成图和用户实测验证，不以样图或案例数量代替效果验收。
 
 ### 交付边界
 
@@ -80,7 +80,7 @@
 - `docs/PRD-AI创作平台需求文档.md` §2.4
 - `docs/02-agent-and-skill-orchestration-contract.md`
 - `docs/07-1a-user-flow-and-ui.md`
-- `docs/research/02-agent-skill-content-adoption.md` §10-§13
+- `packages/skills/AGENTS.md`
 - `docs/spec/S11-agent-workbench-ui-loop.md`
 - `docs/spec/S12-commerce-white-background-refine-e2e.md`
 - `docs/spec/S13-creative-generation-and-chat-edit-e2e.md`

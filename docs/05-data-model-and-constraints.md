@@ -17,7 +17,7 @@
 | 项       | 内容                                                          |
 | -------- | ------------------------------------------------------------- |
 | 状态     | v0.8 1A generation preferences 与生成动作证据 v2 回写后待复审 |
-| 基准     | PRD v1.11、参考工程 `D:\agent\image` 的 Prisma schema         |
+| 基准     | PRD v1.11                                                     |
 | 完成节点 | 编码前                                                        |
 | 裁决范围 | 表、字段、枚举、唯一约束、索引、账本不变量、迁移策略          |
 | 不裁决   | UI、接口语义、Provider PoC 脚本                               |
@@ -26,19 +26,17 @@
 
 本文件把 PRD 的核心表落成工程可实现的数据契约。字段命名可以在实际 ORM 中按规范调整，但不变量、关系和唯一约束不得丢失。
 
-## 2. 参考工程可复用模式
+## 2. 数据分层
 
-`D:\agent\image` 已有多包项目可参考：
+- 报价：`run_quotes` 保存提交前费用快照、TTL 与幂等证据。
+- 生成：任务、Provider attempt 与候选产物分离。
+- 对话：Agent turn、消息与工具调用审计分别记录。
+- Skill：目录、版本、风险标签与必需输入随快照冻结。
+- 模型：Provider、模型、能力、凭据验证与默认模型分层。
+- 事件：EventOutbox 保持项目事件顺序，支持 SSE 断线恢复。
+- Worker：heartbeat 保存存活与运维状态。
 
-- 提交前费用快照、TTL 和幂等模式：可吸收为新项目 `run_quotes`；不吸收旧画布产品形态。
-- `Generation` / `GenerationCandidate`：生成任务和候选产物分离。
-- `AgentTurn` / `AgentMessage`：Agent 过程状态、消息、工具调用审计。
-- `AgentSkill`：Skill 目录、版本、风险标签、必需输入。
-- `ModelConfig` / `ProviderKey`：Provider、模型、能力、密钥验证和默认模型。
-- `EventOutbox`：按项目顺序事件，支持 SSE 断线恢复。
-- `WorkerHeartbeat`：Worker 存活和运维状态。
-
-新项目需要在此基础上新增积分账本、Provider attempt、产物归属和保真审计。
+积分账本、产物归属和保真审计使用各自的事实与约束，不由上述状态的展示投影代替。
 
 ## 3. 核心枚举
 
@@ -1848,7 +1846,7 @@ S14 把 S10 的生产私有对象存储从进程环境密钥提升为已审批�
 
 ### event_outbox
 
-参考旧工程：
+事件记录字段：
 
 - `id`
 - `scope_type`

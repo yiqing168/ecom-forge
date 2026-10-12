@@ -18,8 +18,8 @@
 - `docs/09-validation-and-operations.md`
 - `docs/10-engineering-architecture-and-deployment.md`
 - `docs/proposals/admin-control-plane-architecture-and-security.md`
-- `docs/research/01-full-site-product-interaction-benchmark.md` §4.4、§4.6、§4.7
-- `docs/research/03-model-catalog-and-credit-pricing-benchmark.md`
+- `docs/design/01-full-site-screen-flow-spec.md`
+- `docs/design/03-v0-full-site-ui-interaction-prompt.md`
 
 > 当前入口状态（2026-08-30）：用户侧账户页改为读取真实用户、积分账户和积分账本；商品导航与“商品白底精修”入口暂时隐藏。该隐藏是产品展示开关，不删除对应 API、Skill 或历史数据能力。
 
@@ -188,7 +188,7 @@ audit.read / health.read
 
 Skill 是知识/工作流，模型是执行引擎，两者独立。primary Skill 仍必选；模型目录按 Skill required capabilities、用户权限、环境和 rollout 过滤，但 Skill 不能携带 Key、价格或强制绕过用户模型选择。
 
-旧工程 `D:\agent\image` 的模型设置只吸收以下交互：单一“模型配置”入口、按用途区分 Brain/生图/视频、填写协议/接口地址/Key 后从真实接口获取模型列表、下拉选择模型、Key 只写不回显。以下机制不进入当前平台：普通用户自带 Key、模型配置与用户账号绑定、Key 回显，以及绕过服务端可用目录让普通用户提交 raw model ID。
+管理台模型配置采用单一“模型配置”入口，按用途区分 Brain/生图/视频；填写协议/接口地址/Key 后从真实接口获取模型列表，通过下拉选择精确模型，Key 只写不回显。普通用户自带 Key、模型配置与用户账号绑定、Key 回显，以及绕过服务端可用目录提交 raw model ID 均不进入当前平台。
 
 ### 5.2 模型配置
 

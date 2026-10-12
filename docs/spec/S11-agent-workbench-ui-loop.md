@@ -78,7 +78,8 @@ Skill 时提供选择动作，以当前目录版本更新输入，不触发生�
 - `docs/spec/S10-product-sku-facts-assets-and-artifacts.md`
 - `docs/spec/S07-provider-gateway-poc-and-cost.md` §11
 - `docs/spec/S14-user-center-and-minimal-admin-console.md` §5-6
-- `docs/research/01-full-site-product-interaction-benchmark.md`
+- `docs/design/01-full-site-screen-flow-spec.md`
+- `docs/design/03-v0-full-site-ui-interaction-prompt.md`
 - `docs/spec/00-master-development-plan.md` §8
 - 本地 `imgage/` 参考图（仅参考、不提交）
 
@@ -86,7 +87,7 @@ Skill 时提供选择动作，以当前目录版本更新输入，不触发生�
 
 正式 UI 代码必须在以下步骤完成并通过产品评审后开始：
 
-1. 核对即梦、蛙创、ChatGPT/Gemini 和 `imgage/` 的证据记录，只吸收成熟交互，不复制品牌外观或旧画布 Agent。
+1. 核对本项目页面规格、交互状态和本地 `imgage/` 的设计证据；正式 UI 以已评审设计为准，1A 保持对话创作入口。
 2. 第一组 A01-A10 共 10 个普通用户页面族、9 个 overlay 族及全局状态矩阵完成评审；独立管理台不作为 A11 混入普通站。
 3. 使用 Stitch MCP 建立统一设计系统，并产出 A04 Agent 工作台桌面/移动主流程、异常和刷新恢复设计。
 4. 设计稿标注页面族 ID、路由、组件状态及 API/SSE 映射；产品评审冻结后才开始编码。
@@ -99,7 +100,7 @@ Stitch 不可用或设计未冻结时，S11 保持阻塞。`imgage/`、`.playwri
 
 包含 A04：新会话/历史会话、会话列表、对话流、输入区、当前输入附件、`@`、`/` Skill、Agent 可见步骤、澄清/事实确认、任务/产物面板、结果预览、同会话继续改、SSE/刷新恢复。1A 工作台不显示费用卡、执行模式开关或当次积分上限设置。
 
-同时包含 1A 正式 Skill 内容包。S11 必须把 `docs/research/02-agent-skill-content-adoption.md` 已完成的来源研究和已批准的第一方新增方法转成**本项目自己的**可安装、可校验、可版本化正文，不能只交 runtime、空 catalog 或测试 fixture。当前内置内容包含以下 13 个 primary，其中叙事电影海报、人像焕新、商品白底精修和实景拼贴·写意纸境暂不公开，其余 9 个供目录选择；实际目录可见性以 manifest 为准：
+同时包含 1A 正式 Skill 内容包。S11 必须交付创作目标明确、方法完整、可移植、可安装、可校验且可版本化的正文，不能只交 runtime、空 catalog 或测试 fixture。当前内置内容包含以下 13 个 primary，其中叙事电影海报、人像焕新、商品白底精修和实景拼贴·写意纸境暂不公开，其余 9 个供目录选择；实际目录可见性以 manifest 为准：
 
 1. `creative-free-generation@1.0.1`（自由创作，承接纯文本或可选参考图的通用从零生图）
 2. `creative-portrait-renewal@1.0.0`（人像焕新，2026-10-07 起隐藏）
@@ -123,7 +124,7 @@ Stitch 不可用或设计未冻结时，S11 保持阻塞。`imgage/`、`.playwri
 
 本节所说的“当前 Skill schema”仅指宿主 package manifest/profile 和内部编译结果，不是要求作者把平台字段或候选计划写入 `SKILL.md`。`SKILL.md` 应保持 Codex 兼容的 `name/description` frontmatter 与可直接复制的通用创作知识；宿主能力、输入、张数、Preset、依赖和权限由 manifest 与平台契约负责。
 
-`creative-free-generation` 是第一方通用任务知识，不伪装成风格 Skill，也不替代九个素材职责更严格的专门 primary；当用户目标明显属于专门 Skill 时只提示切换，不静默换 Skill。九个专门创意 primary 可以在权利明确时吸收用户提供参考材料中的创作方法与量化执行规则，但必须删除外部作者、署名、账号、网址、推广、品牌归属和资产，并改写为当前 Skill schema、产品文字策略、权限边界与 eval。白底精修和共享电商知识可选择性复用 `D:\agent\image\packages\agent\src\skills` 的项目方自有内容，但必须删除旧画布、Planner 和执行授权语义并重写为当前 schema。
+`creative-free-generation` 是第一方通用任务知识，不伪装成风格 Skill，也不替代九个素材职责更严格的专门 primary；当用户目标明显属于专门 Skill 时只提示切换，不静默换 Skill。九个专门创意 primary 可以依据权利明确的用户材料组织创作方法与量化执行规则，但正文不携带无关的作者署名、账号、推广链接、品牌背书或未授权资产；真实来源和必要版权声明保留在审计元数据与许可证记录中。内容须遵守产品文字策略、权限边界并通过 eval。白底精修和共享电商知识按商品事实、素材职责和类目风险组织；宿主 schema 与权限契约单独维护，不把画布、Planner 或执行授权语义写入通用 Skill 正文。
 
 首版还必须交付 7 个热门类目 auxiliary：服饰鞋包、美妆个护、食品饮料、家居生活、宠物用品、运动户外、数码配件；并交付真人商品摄影、共享电商视觉、素材角色、身份与关系保真、原创隔离、视觉重量/视线关系、跨图叙事差异等 required/optional auxiliary 及其一跳 L2 自检 reference。热门类目只作为 `internal auxiliary`，由 Agent 在用户所选电商 primary 的精确一跳 allowlist 内按事实动态加载，不出现在前端主 Skill 选择器中。
 

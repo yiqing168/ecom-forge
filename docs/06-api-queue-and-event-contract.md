@@ -20,13 +20,13 @@ auto 版本接受 `1 | 2 | 3`，新草稿使用 v3；profile 仍只接受 `1 | 2
 
 v1/v2 档案 ID 白名单：`human-story`、`visual-metaphor`、`spatial-drama`、`color-expression`、`graphic-order`、`material-experiment`。`auto` 和 `profile` 的 `version` 接受数字 `1 | 2`，新选择默认 `2`，旧请求和恢复保持原版本；不规范化改写客户端明确提交的 v1。未知模式、ID、版本、额外字段（包括自定义人格正文）返回既有参数校验错误。API 的 create/GET turn/GET session 在 `generation_preferences` 中返回保存的选择；同 key 改选择返回既有幂等冲突。该字段不改变队列 payload、收费授权、SKU、Provider 参数或工具 schema。
 
-| 项       | 内容                                                               |
-| -------- | ------------------------------------------------------------------ |
-| 状态     | v0.10 1A 生成任务排队与无费用卡 API 收口后可复审                   |
-| 基准     | PRD v1.12、参考工程 `D:\agent\image` 的 API/Queue/EventOutbox 模式 |
-| 完成节点 | 编码前                                                             |
-| 裁决范围 | API、SSE、队列 payload、Webhook、错误码、幂等和权限校验            |
-| 不裁决   | 数据库索引、页面布局、Provider 成本模型                            |
+| 项       | 内容                                                    |
+| -------- | ------------------------------------------------------- |
+| 状态     | v0.10 1A 生成任务排队与无费用卡 API 收口后可复审        |
+| 基准     | PRD v1.12                                               |
+| 完成节点 | 编码前                                                  |
+| 裁决范围 | API、SSE、队列 payload、Webhook、错误码、幂等和权限校验 |
+| 不裁决   | 数据库索引、页面布局、Provider 成本模型                 |
 
 ## 1. 目标
 
@@ -370,7 +370,7 @@ Compiler build 前按 snapshot 中真实 ID 再读取 ownership/lifecycle/conten
 
 ### POST `/api/run-quotes`
 
-用途：创建费用报价和服务端编译快照。只参考历史工程的费用估算、TTL 和幂等模式，不迁移旧画布产品形态。
+用途：创建费用报价和服务端编译快照，固定费用估算、TTL 和幂等证据。
 
 入参：
 
@@ -970,7 +970,7 @@ binding replace body 固定 `{ expected_principal_revision, expected_bindings_re
 
 ## 6. 队列设计
 
-参考旧工程 BullMQ 队列：
+BullMQ 队列按业务职责划分：
 
 ```text
 workflow

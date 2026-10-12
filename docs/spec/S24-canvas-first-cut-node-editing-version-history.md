@@ -16,7 +16,8 @@
 - `docs/06-api-queue-and-event-contract.md`
 - `docs/07-1a-user-flow-and-ui.md`
 - `docs/08-security-compliance-and-asset-lifecycle.md`
-- `docs/research/01-full-site-product-interaction-benchmark.md` §6
+- `docs/design/01-full-site-screen-flow-spec.md`
+- `docs/design/03-v0-full-site-ui-interaction-prompt.md`
 - `docs/spec/00-master-development-plan.md` §8
 - `docs/spec/S22-commerce-suite-pipeline.md`
 

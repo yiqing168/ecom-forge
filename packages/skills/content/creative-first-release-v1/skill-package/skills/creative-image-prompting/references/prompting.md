@@ -1,6 +1,6 @@
 # Prompting Reference
 
-This reference follows the shared image-generation guidance used by Codex. It is a decision aid, not a required prompt format.
+Use this reference to decide image roles, visual priorities, and edit constraints. It is a decision aid, not a required prompt format.
 
 ## Specificity
 

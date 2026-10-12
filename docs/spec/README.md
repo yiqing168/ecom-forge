@@ -14,7 +14,7 @@
 ```text
 PRD 产品需求
   -> 01-10 阶段 0 架构/数据/API/UI/运维契约
-  -> research 成熟产品证据与采用/拒绝决策（辅助，不改变裁决顺序）
+  -> design 页面规格与交互状态（辅助，不改变裁决顺序）
   -> SPEC 开发任务规格单
   -> 代码实现、测试、评审
 ```
@@ -39,7 +39,7 @@ SPEC 不重新裁决产品边界和工程架构。若 SPEC 与上游文档冲突
 - SPEC 是全流程任务，不按“只后端/只前端/只 UI”机械切割；同一个业务闭环涉及前端、后端、数据库、队列、测试、监控时，应在同一 SPEC 写清各自范围。
 - 正式 SPEC 预计 2-5 个开发日；超过 5 天才允许拆分，少于半天的小功能应合并到同一业务 SPEC。
 - UI 设计进入对应业务 SPEC 的“前端/UI 交付”章节；跨页面的设计系统、组件规范、视觉基线可单独拆 `UI-SPEC`。
-- 涉及正式产品 UI 的 SPEC 必须读取 `docs/research/01-full-site-product-interaction-benchmark.md` 和主计划 §8，引用页面族 ID、Stitch 评审稿及正反状态；不得在编码时新增核心页面或确认步骤。
+- 涉及正式产品 UI 的 SPEC 必须读取 `docs/design/01-full-site-screen-flow-spec.md`、`docs/design/03-v0-full-site-ui-interaction-prompt.md` 和主计划 §8，引用页面族 ID、Stitch 评审稿及正反状态；不得在编码时新增核心页面或确认步骤。
 - 不允许 SPEC 私自扩展字段、状态、错误码、队列 payload。新增项必须先回写 `04/05/06/07/10` 等上游文档。
 - 不允许把 1A 做成画布 Agent。1A 的第一入口始终是对话 Agent，画布只作为后续工作流模块。
 

@@ -19,7 +19,7 @@
 - `docs/05-data-model-and-constraints.md`
 - `docs/06-api-queue-and-event-contract.md`
 - `docs/07-1a-user-flow-and-ui.md`
-- `docs/research/02-agent-skill-content-adoption.md` §10-§13
+- `packages/skills/AGENTS.md`
 - `docs/spec/S11-agent-workbench-ui-loop.md`
 - `docs/spec/S12-commerce-white-background-refine-e2e.md`
 - `docs/spec/S14-user-center-and-minimal-admin-console.md`
@@ -112,7 +112,7 @@ S11 图片比例下拉提供 `智能比例 | 1:1 | 3:4 | 4:3 | 9:16 | 16:9`。�
 - 集成测试覆盖“生成两张/生成三张/未写数量使用 Skill 默认”的 Brain 输出、Compiler 张数校验、quote 金额和 Provider 实际调用数量一致；断言前端不解析数量且全链路不产生费用卡。
 - R1-R5 拒绝提示必须测试。
 - 集成测试覆盖文本拦截、图片审核隔离和发布对象一致性，并断言不增加产品水印或 AI 标识。
-- 三个 primary 分别覆盖素材职责、身份/关系保真、主 Skill 不匹配提示和至少一组负向 golden eval；照片意象重绘必须覆盖参考图确实进入 Provider、艺术指导缺字段拒绝、多个张力堆叠拒绝、无来源象征拒绝、装饰性颜色/材质拒绝和像素保留漂移拒绝；人像焕新必须覆盖缺失变化项、禁改项和未知变化项拒绝；继续改图必须覆盖白底精修父产物事实继承以及未知 primary 拒绝。测试夹具不得使用公开参考仓库的图片、正文或示例。
+- 三个 primary 分别覆盖素材职责、身份/关系保真、主 Skill 不匹配提示和至少一组负向 golden eval；照片意象重绘必须覆盖参考图确实进入 Provider、艺术指导缺字段拒绝、多个张力堆叠拒绝、无来源象征拒绝、装饰性颜色/材质拒绝和像素保留漂移拒绝；人像焕新必须覆盖缺失变化项、禁改项和未知变化项拒绝；继续改图必须覆盖白底精修父产物事实继承以及未知 primary 拒绝。测试夹具使用独立编写的场景描述，不引入第三方图片、正文或示例。
 - 照片意象重绘另覆盖 1 张和 9 张源图的一一对应编译、漏图、重复绑定、单节点混入多图拒绝，以及 9 个 Provider 请求均固定 `n=1`；单张失败只影响对应节点，不能吞掉其他已发布结果或重复结算。
 - 三个 primary 分别建立至少一组真实 `source/request -> 决策摘要 -> quarantined result -> 审核后 result` 案例档案，记录 Skill/Preset、Brain、图片模型、prompt digest、输入授权、artifact lineage 与逐维评分。自由创作重点评命题与反模板，人像焕新重点评身份/关系与自然度，照片意象重绘重点评语义关系与新构图，并逐项对比源图与成图的主体坐标、相对面积、透视/地平线和主要轮廓拓扑；“像素已重画但空间骨架基本重合”不得判为通过。mock 图和仅有文本计划不得作为成图质量证据。
 - 创意评测必须区分用户明确情绪、画面可观察证据和模型推测；固定色温、饱和度、天气或道具映射，或无事实依据的经历与象征，均作为失败而不是“拟人化”加分。

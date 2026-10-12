@@ -117,7 +117,7 @@
         {
           "skill_id": "creative-image-prompting@1.1.0",
           "mode": "required",
-          "reason": "Use the shared Codex-derived image prompting method."
+          "reason": "Use the shared image generation and editing guidance."
         }
       ],
       "references": [],
@@ -257,7 +257,7 @@
       "references": [
         {
           "path": "references/prompting.md",
-          "purpose": "Codex-compatible shared prompting principles for detailed and generic image requests."
+          "purpose": "Shared prompting principles for detailed and generic image requests."
         },
         {
           "path": "references/sample-prompts.md",
@@ -373,7 +373,7 @@
         {
           "skill_id": "creative-image-prompting@1.1.0",
           "mode": "required",
-          "reason": "Use the shared Codex-derived image prompting method."
+          "reason": "Use the shared image generation and editing guidance."
         },
         {
           "skill_id": "creative-identity-fidelity@1.0.0",
@@ -447,7 +447,7 @@
         {
           "skill_id": "creative-image-prompting@1.1.0",
           "mode": "required",
-          "reason": "Use the shared Codex-derived image prompting method."
+          "reason": "Use the shared image generation and editing guidance."
         }
       ],
       "references": [],
@@ -485,7 +485,7 @@
         {
           "skill_id": "creative-image-prompting@1.1.0",
           "mode": "required",
-          "reason": "Use the shared Codex-derived image prompting method."
+          "reason": "Use the shared image generation and editing guidance."
         },
         {
           "skill_id": "creative-material-role@1.0.0",
@@ -558,7 +558,7 @@
         {
           "skill_id": "creative-image-prompting@1.1.0",
           "mode": "required",
-          "reason": "Use the shared Codex-derived image prompting method."
+          "reason": "Use the shared image generation and editing guidance."
         }
       ],
       "references": [],
@@ -596,7 +596,7 @@
         {
           "skill_id": "creative-image-prompting@1.1.0",
           "mode": "required",
-          "reason": "Use the shared Codex-derived image prompting method."
+          "reason": "Use the shared image generation and editing guidance."
         }
       ],
       "references": [],
@@ -634,7 +634,7 @@
         {
           "skill_id": "creative-image-prompting@1.1.0",
           "mode": "required",
-          "reason": "Use the shared Codex-derived image prompting method."
+          "reason": "Use the shared image generation and editing guidance."
         }
       ],
       "references": [],
@@ -672,7 +672,7 @@
         {
           "skill_id": "creative-image-prompting@1.1.0",
           "mode": "required",
-          "reason": "Use the shared Codex-derived image prompting method."
+          "reason": "Use the shared image generation and editing guidance."
         }
       ],
       "references": [],
@@ -710,7 +710,7 @@
         {
           "skill_id": "creative-image-prompting@1.1.0",
           "mode": "required",
-          "reason": "Use the shared Codex-derived image prompting method."
+          "reason": "Use the shared image generation and editing guidance."
         }
       ],
       "references": [],
@@ -748,7 +748,7 @@
         {
           "skill_id": "creative-image-prompting@1.1.0",
           "mode": "required",
-          "reason": "Use the shared Codex-derived image prompting method."
+          "reason": "Use the shared image generation and editing guidance."
         }
       ],
       "references": [],

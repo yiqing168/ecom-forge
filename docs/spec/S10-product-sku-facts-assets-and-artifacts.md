@@ -16,7 +16,8 @@
 - `docs/08-security-compliance-and-asset-lifecycle.md` §2-4、§7-8
 - `docs/spec/S08-agent-turn-skill-runtime-and-loop-guard.md` §4、§6、§8
 - `docs/spec/S09-deterministic-compiler-r1-r5-and-plan-validation.md` §5-7
-- `docs/research/01-full-site-product-interaction-benchmark.md` §4.4、§4.7
+- `docs/design/01-full-site-screen-flow-spec.md`
+- `docs/design/03-v0-full-site-ui-interaction-prompt.md`
 
 S03-S09 已完成。S10 不改变 Agent、Compiler、Credit、Provider 或内容安全的既有裁决；字段、状态、payload 和错误码先回写 `05/06/08` 后再编码。
 

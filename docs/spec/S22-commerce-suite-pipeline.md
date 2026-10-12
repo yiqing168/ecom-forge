@@ -15,7 +15,8 @@
 - `docs/05-data-model-and-constraints.md`
 - `docs/06-api-queue-and-event-contract.md`
 - `docs/07-1a-user-flow-and-ui.md`
-- `docs/research/01-full-site-product-interaction-benchmark.md` §2.1.1、§4.5、§4.7
+- `docs/design/01-full-site-screen-flow-spec.md`
+- `docs/design/03-v0-full-site-ui-interaction-prompt.md`
 
 ## 当前模块范围
 
@@ -40,7 +41,7 @@
 - 按 `06` §4.2 实现 suite list/create/detail/update/run/retry；运行请求固定 suite revision 和生成动作 digest，服务端创建 quote 并通过内部 submit 预留积分。
 - suite 草稿 PATCH 使用 `expected_revision` compare-and-set；商品事实、输入素材或配置变化必须使旧 quote 失效。
 - 套图批量下载/记录导出复用 `POST /api/v1/suites/{suite_id}/exports` 和统一 export status/file 接口，不在 HTTP 请求中同步打包。
-- 采用 DesignKit 验证过的顺序：同商品 1-6 张素材 -> 平台/国家/语言/比例 -> 商品卖点/事实 -> 智能匹配或自定义图类型 -> 附加项 -> 明确总张数和预计积分 -> 点击生成 -> 分组结果。智能匹配只给建议，不替用户确认商品事实或自动点击生成。
+- 套图流程顺序：同商品 1-6 张素材 -> 平台/国家/语言/比例 -> 商品卖点/事实 -> 智能匹配或自定义图类型 -> 附加项 -> 明确总张数和预计积分 -> 点击生成 -> 分组结果。智能匹配只给建议，不替用户确认商品事实或自动点击生成。
 - 点击“生成套图”即授权当前配置，服务端在 Provider 前报价、核对并预留，不弹费用确认框。
 - 套图产物支持画布挂载所需的稳定 artifact 元数据和 `canvas_node_id` 回填协议必须在 S22 实现。
 - S24 完成前，前端不渲染“送入画布”按钮，不使用灰色占位或“即将上线”文案；S24 上线时再接入并开放该入口。

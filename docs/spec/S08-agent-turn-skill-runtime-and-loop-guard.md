@@ -39,11 +39,11 @@ S05 的 queue intent、dispatcher、reconciler 和 event outbox，S06 的 SSE �
 
 公开文本拒绝的实现与验收遵循 `02`：原生文本、显式回复与澄清的安全检查均在私有 transcript 捕获之前；内部 `public_text_rejected` 仅存规则和 usage，与结算原子追加脱敏修复上下文。安全拒绝最多一次修复，普通结构错误最多三次，接管不重置任一预算。测试须检查私有 payload 和 transcript 不含拒绝原文，并覆盖跨回复形式的重复拒绝与接管。
 
-## 2. 参考工程调研与采用边界
+## 2. 运行机制与执行边界
 
-本轮只读调研 `D:\agent\image` 中已经实现的**对话 Agent、tool calling 与 Skill runtime**。参考对象是其 Agent 工程机制，不是无限画布产品形态。以下机制有价值并吸收到当前工程：
+本轮实现对话 Agent、tool calling 与 Skill runtime，按以下机制组织执行，不将无限画布引入 1A 的对话流程：
 
-| 参考机制                                      | ecom-forge 吸收方式                                                                                               |
+| 运行机制                                      | 本项目要求                                                                                                        |
 | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | 原生 tool loop + 明确 terminal tools          | 模型只能在服务端静态 registry 中调用工具，并以 respond/clarify/candidate plan 显式结束                            |
 | `load_skill` 作为稳定工具、reference 增量加载 | L0/L1/L2 渐进加载；只读取 `SKILL.md` 显式声明的一跳 reference                                                     |
@@ -54,22 +54,22 @@ S05 的 queue intent、dispatcher、reconciler 和 event outbox，S06 的 SSE �
 | 工具 started/finished 进度事件与审计          | 先写 trace started，再执行事务外调用，完成时写摘要并投影 turn SSE                                                 |
 | 取消与晚到 Worker 的竞态测试                  | turn revision + continuation_no + processing lease/owner CAS，晚到结果只能 no-op                                  |
 
-以下内容明确不迁移：
+以下内容不属于本轮执行范围或被明确禁止：
 
-- 参考工程中与本轮无关的 canvas node、action batch、direct-edit、自动铺图和全画布搜索。
+- 与本轮无关的 canvas node、action batch、direct-edit、自动铺图和全画布搜索。
 - 把完整 prompt、模型原文或 Skill 私有正文写入本地 `.debug` 文件。
 - 文件缺失时使用内置 fallback Skill 正文继续执行。
 - 让 LLM 或 Skill 自行启用未注册工具、执行策略、Provider、模型、费用或资产权限。
 - 依赖模型输出文本变化判断“有进展”；进展必须由服务端状态和已验证事实决定。
 
-线上产品只参考公开、可验证的行为与安全机制，不推测私有实现。2026-08-12 调研基线：
+以下公开技术资料用于核对工具、Skill、授权与对话交互原则；具体要求由本项目契约裁决：
 
-| 公开参考                                                                                                       | 可迁移机制                                                                         | 本项目裁决                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| OpenAI Tools / function calling（`https://developers.openai.com/api/docs/guides/tools`）                       | 模型在声明的工具集合中自主选择调用；函数参数使用 strict schema                     | Brain 获得当前裁剪后的 `ToolContract[]`；服务端整批 preflight 和执行，模型选择不等于授权                            |
-| OpenAI Codex Skills（`https://learn.chatgpt.com/docs/build-skills`）                                           | 初始只展示 name/description，再渐进读取正文                                        | 借鉴渐进披露，但本产品的 primary 必须由用户选择；模型只在所选 primary 的一跳 allowlist 中加载 optional auxiliary/L2 |
-| OpenAI Codex approvals & security（`https://learn.chatgpt.com/docs/agent-approvals-security`）                 | 技术可达范围与动作批准是两层控制；工具结果、prompt 和 telemetry 默认按敏感数据处理 | ToolPolicy/ownership 决定技术可达，Compiler/quote/confirmation 决定收费副作用；trace/SSE 只保存脱敏摘要             |
-| Manus 公网页面与帮助中心（`https://manus.im/`、`https://help.manus.im/en/articles/11813771-how-to-use-manus`） | 对话入口弱化固定结构；运行资源随任务复杂度受预算约束                               | 1A 保持开放对话和模型自主编排，同时使用 rounds/tool/token/成本硬预算；不复制其 UI、credits 定价或未公开运行细节     |
+| 公开技术依据                                                                                                   | 技术原则                                                                           | 本项目裁决                                                                                                      |
+| -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| OpenAI Tools / function calling（`https://developers.openai.com/api/docs/guides/tools`）                       | 模型在声明的工具集合中自主选择调用；函数参数使用 strict schema                     | Brain 获得当前裁剪后的 `ToolContract[]`；服务端整批 preflight 和执行，模型选择不等于授权                        |
+| OpenAI Codex Skills（`https://learn.chatgpt.com/docs/build-skills`）                                           | 初始只展示 name/description，再渐进读取正文                                        | 渐进加载中，本产品的 primary 必须由用户选择；模型只在所选 primary 的一跳 allowlist 中加载 optional auxiliary/L2 |
+| OpenAI Codex approvals & security（`https://learn.chatgpt.com/docs/agent-approvals-security`）                 | 技术可达范围与动作批准是两层控制；工具结果、prompt 和 telemetry 默认按敏感数据处理 | ToolPolicy/ownership 决定技术可达，Compiler/quote/confirmation 决定收费副作用；trace/SSE 只保存脱敏摘要         |
+| Manus 公网页面与帮助中心（`https://manus.im/`、`https://help.manus.im/en/articles/11813771-how-to-use-manus`） | 对话入口弱化固定结构；运行资源随任务复杂度受预算约束                               | 1A 保持开放对话和模型自主编排，同时使用 rounds/tool/token/成本硬预算；UI、计价与执行细节由本项目契约定义        |
 
 以上来源只证明交互/契约原则。具体状态机、幂等、数据库真相、资金与权限语义仍完全由本仓库文档裁决。
 
@@ -88,7 +88,7 @@ S05 的 queue intent、dispatcher、reconciler 和 event outbox，S06 的 SSE �
 
 `detecting_intent` 只是内部可恢复阶段，不要求额外运行固定分类器，也不允许 Controller 按意图枚举接管编排。模型可以在一次 brain step 中直接回答、追问、加载知识或提出候选计划；工程只验证其结构化 outcome。Compiler 可以规范化和拒绝候选计划，不能静默替换模型的审美、构图或创意目标。
 
-来自成熟 Agent 产品的交互原则只吸收为产品行为：用户能看到安全的阶段/活动摘要、可以在运行中追加新指令或停止、刷新后可以恢复；系统不展示 chain-of-thought、完整 prompt、内部工具名、原始参数或模型私有推理。
+对话交互必须满足：用户能看到安全的阶段/活动摘要、可以在运行中追加新指令或停止、刷新后可以恢复；系统不展示 chain-of-thought、完整 prompt、内部工具名、原始参数或模型私有推理。
 
 ## 3. 本轮范围与后续边界
 
@@ -1214,7 +1214,7 @@ AGENT_MAX_REFERENCES=12
 
 ### 17.16 完成交付与用户裁决 (2026-09-11)
 
-> **状态注记（2026-09-13）**：本节记录 2026-09-11 时点的交付与裁决事实。此后工作区仍有未复验改动（套件增删、provider/worker 逻辑调整），因此本节中的 `validate:*` 通过结论、集成项数与“未发现阻塞缺陷”表述**不描述当前门禁状态**；当前结论以 `docs/research/06-p1-p2-code-review-status.md` 为准。
+> **状态注记（2026-09-13）**：本节记录 2026-09-11 时点的交付与裁决事实。此后工作区仍有未复验改动（套件增删、provider/worker 逻辑调整），因此本节中的 `validate:*` 通过结论、集成项数与“未发现阻塞缺陷”表述**不描述当前门禁状态**；当前结论须以完整改动区复审、实际门禁结果与用户验收为准。
 
 - 本增量完成批次 4-7 的收尾与批次 8 的复验：summary v2/CAS/有界窗口、恒定工具前缀与非法批次有界反馈（`recordIllegalToolBatch`，混排不再整回合失败，和普通结构错误共享三次修复上限）、生命周期/读门禁、readiness 版本枚举、统一 `agent_transcript_metric`；专项验收入口与 `test:integration`、api `test` 均改为零配置自备库（稳定命名复用、只前向迁移、绝不自动删库）。
 - 门禁实测：`typecheck --force` 14/14、lint 14/14、format 全过、`pnpm check` 五段 24/24（含 api 58 文件/329 项）、worker 集成 18 文件/321 项（真实 PG）、db 8 文件/169 项、两条 `validate:*` 通过、`pnpm build` 14/14。完整 diff 正反审查通过（主审报告 + 用户独立复审复现全部数字），未发现阻塞缺陷。

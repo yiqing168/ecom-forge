@@ -14,7 +14,8 @@
 - `docs/06-api-queue-and-event-contract.md`
 - `docs/07-1a-user-flow-and-ui.md`
 - `docs/09-validation-and-operations.md`
-- `docs/research/01-full-site-product-interaction-benchmark.md` §4.5-§4.7
+- `docs/design/01-full-site-screen-flow-spec.md`
+- `docs/design/03-v0-full-site-ui-interaction-prompt.md`
 
 ## 当前模块范围
 

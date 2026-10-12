@@ -144,10 +144,9 @@ that affect visible pixels. It may structure a prompt for clarity, but must not
 silently drop material, composition, identity, typography, or revision invariants
 to satisfy a global format or character target.
 
-The first-party creative image Skills absorb the portable image-generation method
-used by Codex: separate generate from edit intent, assign an explicit role to every
-input image, normalize detailed requests without adding requirements, and use the
-optional labeled visual scaffold only when it improves clarity. The Brain remains
+The creative image Skills separate generate from edit intent, assign an explicit
+role to every input image, normalize detailed requests without adding requirements,
+and use the optional labeled visual scaffold only when it improves clarity. The Brain remains
 responsible for turning the selected Skill and inspected source pixels into one
 source-specific final prompt. The scaffold is knowledge, not a second execution
 protocol; Compiler and the image adapter remain the owners of capability, input,
@@ -173,11 +172,11 @@ layer may silently truncate a prompt.
 
 Agent 可以使用 LLM 理解用户，但不能让 LLM 成为交易、权限和产物修改权的最终裁决者。本文定义从自然语言到可执行计划的安全编排边界。
 
-本项目的 1A Agent 是对话式 Agent，核心服务创意生图、电商从零生成和本会话产物迭代。历史项目 `D:\agent\image` 中已经实现的对话 Agent、tool calling 与 Skill runtime 可参考其架构、渐进加载、运行护栏、Provider 调用和工具审计；参考对象不是无限画布产品形态，也不迁移旧画布业务语义。
+本项目的 1A Agent 是对话式 Agent，核心服务创意生图、电商从零生成和本会话产物迭代。架构分别处理渐进加载、运行护栏、Provider 调用和工具审计；无限画布属于后续专业工作流，不参与 1A 的对话编排。
 
-参考工程中吸收两类资产。运行机制包括原生 tool loop 与 terminal tools、有界对话 working set、上下文指纹、版本匹配后复用 Skill、`load_skill` 增量读取一跳 reference、紧凑 planning view、共享知识去重、工具进度审计、取消与晚到 Worker 的 CAS。电商知识包括事实账本、商品证据归属、组图证据多样性、平台合规、声明安全、类目风险、真人摄影真实感、信息编排和自检清单；这些内容必须按本项目版本化 Skill schema 重写和评测后发布，不能直接引用旧工程运行目录。
+工程分为运行机制与电商知识两层。运行机制包括原生 tool loop 与 terminal tools、有界对话 working set、上下文指纹、版本匹配后复用 Skill、`load_skill` 增量读取一跳 reference、紧凑 planning view、共享知识去重、工具进度审计、取消与晚到 Worker 的 CAS。电商知识包括事实账本、商品证据归属、组图证据多样性、平台合规、声明安全、类目风险、真人摄影真实感、信息编排和自检清单；知识通过本项目版本化 Skill schema 校验与评测后交付，运行时只读取批准的内容目录与快照。
 
-与本轮无关的 canvas node/action batch/direct-edit/自动铺图不迁移；完整 prompt 本地落盘、Skill 缺失时 fallback 正文、slug 别名猜测、自动兜底选择主 Skill，以及由 Skill/模型自行扩大工具或执行策略的做法也不采用。
+与本轮无关的 canvas node/action batch/direct-edit/自动铺图不进入 1A；完整 prompt 本地落盘、Skill 缺失时 fallback 正文、slug 别名猜测、自动兜底选择主 Skill，以及由 Skill/模型自行扩大工具或执行策略的做法也不采用。
 
 不额外启动前置意图分类 LLM。意图证据由使用用户所选主 Skill 的正常 Agent Brain step 产出；该 step token 计入平台成本，但不作为用户侧独立收费项目。
 
@@ -396,9 +395,9 @@ Preset 规则：
 - auxiliary 的 `catalog.visibility` 必须为 `internal`，不得再声明 dependencies 或 Preset；依赖图因此固定为一跳，不形成递归 Skill 树。
 - 同一辅助 Skill 被多个路径需要时按 `skill_id + resource_hash` 去重，只注入一次，实际资源仍全部进入 turn context snapshot。
 
-旧工程电商内容采用映射：
+电商知识分层与交付计划：
 
-| 旧工程内容                                                                                                         | 当前归属                                   | 采用重点                                                   | 计划发布                                            |
+| 知识模块                                                                                                           | 当前归属                                   | 采用重点                                                   | 计划发布                                            |
 | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ | ---------------------------------------------------------- | --------------------------------------------------- |
 | `marketplace-main-image-set`、`amazon-listing-image-set`、`detail-and-infographic-image`、`product-image-critique` | 公开 primary 候选                          | 版位/组图分工、平台合规、动态销售链、诊断而不执行          | S22/S23；诊断能力按后续 SPEC 激活                   |
 | 服饰、美妆、食品、家居、宠物、运动、数码类目 Skill                                                                 | internal auxiliary                         | 买家问题、可见证据、事实与声明风险；不指定最终工具/模型    | S11 成包、S12 首版激活；S22/S23 只升级套图/平台知识 |
@@ -407,7 +406,7 @@ Preset 规则：
 | `campaign-style-lock`                                                                                              | 辅助知识或 Preset 约束，不作为公开 primary | 跨图视觉家族、Comparison Lock、Shot Matrix；不生成画布节点 | S22                                                 |
 | detail/human `references/*.md`                                                                                     | L2 reference                               | 复杂信息编排、脸/皮肤、事件姿态、光线镜头按需加载          | 随拥有它的 auxiliary 发布                           |
 
-迁移内容必须删除旧画布字段、节点铺设、`promptBrief` 等旧输出协议，并改写成可被其他 Agent 直接使用的创作知识；宿主所需的 `required_capabilities`、输入绑定和执行 profile 写入 manifest，不能成为 Skill 正文的输出要求或执行授权。旧 `SKILL.policy.json` 只能转为宿主 profile 或知识风险提示，不能成为执行授权。每个正式 Skill 必须有正例、反例、事实缺失、跨类目和 prompt injection golden eval，不能只凭旧工程已有测试直接发布。
+Skill 正文只包含可被其他 Agent 直接使用的创作知识，不包含画布字段、节点铺设、`promptBrief` 等平台输出协议；宿主所需的 `required_capabilities`、输入绑定和执行 profile 写入 manifest，不能成为 Skill 正文的输出要求或执行授权。policy 信息只能作为宿主 profile 或知识风险提示，不能成为执行授权。每个正式 Skill 必须有正例、反例、事实缺失、跨类目和 prompt injection golden eval，不能以其他测试代替内容评测。
 
 ## 8. 版本快照
 

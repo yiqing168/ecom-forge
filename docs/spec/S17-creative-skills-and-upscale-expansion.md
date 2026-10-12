@@ -13,8 +13,9 @@
 - `docs/02-agent-and-skill-orchestration-contract.md`
 - `docs/03-provider-poc-and-cost-model.md`
 - `docs/09-validation-and-operations.md`
-- `docs/research/01-full-site-product-interaction-benchmark.md` §4.7、§5
-- `docs/research/02-agent-skill-content-adoption.md` §10-§13
+- `docs/design/01-full-site-screen-flow-spec.md`
+- `docs/design/03-v0-full-site-ui-interaction-prompt.md`
+- `packages/skills/AGENTS.md`
 - `docs/spec/S13B-first-release-specialized-creative-skills-e2e.md`
 
 ## 当前模块范围

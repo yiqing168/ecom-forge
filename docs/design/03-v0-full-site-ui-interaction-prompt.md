@@ -15,7 +15,7 @@
 - shadcn/Radix 风格基础组件。
 - `lucide-react` 图标。
 - 画布页面使用 `@xyflow/react`，不要手写无限画布底层能力。
-- `@xyflow/react` 是 React Flow 官方当前包名；现有参考工程同样使用该包。请直接使用官方 `ReactFlow`、`NodeToolbar`、`Handle`、`MiniMap`、`Controls` 和 selection API，不要安装旧包 `reactflow` 或 `react-flow-renderer`，也不要另造画布引擎。
+- `@xyflow/react` 是 React Flow 官方当前包名。请直接使用官方 `ReactFlow`、`NodeToolbar`、`Handle`、`MiniMap`、`Controls` 和 selection API，不要安装旧包 `reactflow` 或 `react-flow-renderer`，也不要另造画布引擎。
 - 使用本地 mock 数据和前端状态完成可点击演示，不依赖真实 API、数据库、登录服务或图片生成 Provider。
 - 所有按钮、菜单、弹层、抽屉、Tab、筛选和关键流程都必须可操作，不能只画静态页面。
 - 页面语言为中文，Ecom Forge、Agent、Skill、SKU、Provider 等专名可保留英文。
@@ -769,7 +769,7 @@ Tab：模板、参考图、收藏。
 
 ## 必须实现的 Overlay
 
-Overlay 计数与名称只以 `docs/research/01-full-site-product-interaction-benchmark.md` §4.7 为准，共 25 族。A01-A03 虽可在 A04 上以弹层呈现，但按页面族计数，不重复计入下列 Overlay。事实/风险确认是对话内卡片，不计为 Overlay，也不得改成计划确认；任何生成入口都没有费用确认 Overlay。
+Overlay 计数与名称以本节清单为准，并与主计划 §8 和全站 UI 设计计划保持一致，共 25 族。A01-A03 虽可在 A04 上以弹层呈现，但按页面族计数，不重复计入下列 Overlay。事实/风险确认是对话内卡片，不计为 Overlay，也不得改成计划确认；任何生成入口都没有费用确认 Overlay。
 
 第一组 9 个：
 

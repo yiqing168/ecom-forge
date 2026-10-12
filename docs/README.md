@@ -8,26 +8,24 @@
 | 文档负责人 | 产品/工程评审指定                                        |
 | 最后更新   | 2026-08-17                                               |
 
-## 工程参考
+## 工程设计
 
-阶段 0 文档会参考历史项目 `D:\agent\image`，但不直接照搬产品形态。参考重点是其中已经实现的对话 Agent、tool calling、Skill runtime、上下文与恢复机制；本项目 1A 的核心入口是通用对话式生图 Agent，用于创意生图、电商从零生成和本会话产物迭代，无限画布只属于后续专业工作流。
+本项目 1A 的核心入口是通用对话式生图 Agent，用于创意生图、电商从零生成和本会话产物迭代；无限画布只属于后续专业工作流。
 
-可复用的是工程模式，不是交互主线：
+工程按以下职责组织：
 
 - 多包结构：`apps/web`、`apps/api`、`apps/worker`、`packages/agent`、`packages/compiler`、`packages/credit`、`packages/provider`、`packages/queue`、`packages/db`、`packages/types`、`packages/shared`、`packages/skills`。
-- Agent/Skill：Skill loader、Skill snapshot、能力依赖提示、guardrails、Agent turn 状态，可迁移到对话式 Agent；Skill 不迁移执行授权。
-- 画布：节点、边、引用角色、执行计划、下游影响和确认，仅作为阶段 3a/3b 画布设计参考。
-- Worker/Queue：BullMQ 队列、`jobId=业务ID` 幂等、worker heartbeat。
-- Provider：统一 ProviderId、请求超时、下载超时、请求摘要脱敏、Provider 成本回传。
-- 事件：EventOutbox + SSE 恢复。
+- Agent/Skill：内容加载、实际内容快照、能力依赖提示、运行护栏和 turn 状态；Skill 提供知识，不拥有执行授权。
+- 画布：阶段 3a/3b 的节点、边、引用角色、执行计划和下游影响处理，不作为 1A 的前置入口。
+- Worker/Queue：BullMQ 队列、业务 ID 幂等和 Worker heartbeat。
+- Provider：统一适配器、请求与下载超时、脱敏诊断和成本回传。
+- 事件：EventOutbox 与 SSE 断线恢复。
 
 产品形态红线：
 
 - 不把 1A 做成画布 Agent。
 - 不要求用户先进入画布才能创意生图或电商从零生成。
-- 不复刻旧项目的画布主交互、节点优先体验或画布上下文 Agent。
 - 对话 Agent 是 1A 第一入口；画布是后续工作流和专业加工模块。
-- 旧项目只吸收工程优点：Agent 架构、Skill 设计、Provider、Worker、Queue、事件、状态和测试经验；不吸收旧画布 Agent 的产品形态。
 
 ## 文档裁决规则
 
