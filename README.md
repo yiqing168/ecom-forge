@@ -85,9 +85,9 @@
 
 [查看 Skill 正文](./packages/skills/content/creative-first-release-v1/skill-package/skills/second-world-photo-remix/SKILL.md)
 
-|                                          日落余音                                          |                                          花开向海                                          |                                              街角花影                                              |
-| :----------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------: |
-| ![海面日落与下方延伸倒影线稿](./apps/web/public/showcase/second-world-photo-remix-01.webp) | ![海边花丛与下方延伸花朵线稿](./apps/web/public/showcase/second-world-photo-remix-02.webp) | ![街角车辆与花树的摄影和轮廓线稿对照](./apps/web/public/showcase/second-world-photo-remix-03.webp) |
+|                                          日落余音                                          |                                          花开向海                                          |                                             峡江漫游                                             |
+| :----------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------: |
+| ![海面日落与下方延伸倒影线稿](./apps/web/public/showcase/second-world-photo-remix-01.webp) | ![海边花丛与下方延伸花朵线稿](./apps/web/public/showcase/second-world-photo-remix-02.webp) | ![峡江群山的摄影与下方延伸吊桥线稿](./apps/web/public/showcase/second-world-photo-remix-04.webp) |
 
 ### 实景转译·日常记忆页
 
