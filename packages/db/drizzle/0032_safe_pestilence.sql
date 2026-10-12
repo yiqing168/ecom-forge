@@ -1,0 +1,3 @@
+ALTER TABLE "model_configurations" ADD COLUMN "moderation_model_snapshot_id" uuid;--> statement-breakpoint
+ALTER TABLE "model_configurations" ADD CONSTRAINT "model_configurations_moderation_model_snapshot_id_models_id_fk" FOREIGN KEY ("moderation_model_snapshot_id") REFERENCES "public"."models"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+CREATE UNIQUE INDEX "model_configurations_moderation_snapshot_unique" ON "model_configurations" USING btree ("moderation_model_snapshot_id");

@@ -1,0 +1,5 @@
+{
+  "extends": "../../tsconfig.package.json",
+  "compilerOptions": { "noEmit": true, "types": ["node"] },
+  "include": ["src/**/*.ts", "drizzle.config.ts"]
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+    },
+    "dev": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "lint:fix": {
+      "dependsOn": ["^lint:fix"],
+      "cache": false
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"]
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "env": ["TEST_DATABASE_URL", "TEST_REDIS_PREFIX", "TEST_REDIS_URL"]
+    },
+    "test:integration": {
+      "dependsOn": ["^build"],
+      "env": ["TEST_DATABASE_URL", "TEST_REDIS_PREFIX", "TEST_REDIS_URL"]
+    },
+    "test:worker": {
+      "dependsOn": ["^build"],
+      "env": ["TEST_DATABASE_URL", "TEST_REDIS_PREFIX", "TEST_REDIS_URL"]
+    },
+    "@ecom-forge/worker#test:integration": {
+      "dependsOn": ["^build", "@ecom-forge/api#test:integration"]
+    },
+    "@ecom-forge/worker#test:worker": {
+      "dependsOn": ["^build", "@ecom-forge/api#test:worker"]
+    }
+  }
+}

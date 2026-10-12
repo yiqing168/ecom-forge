@@ -1,0 +1,3 @@
+ALTER TABLE "content_safety_preflights" DROP CONSTRAINT "content_safety_preflights_reserved_cost_nonnegative";--> statement-breakpoint
+ALTER TABLE "content_safety_preflights" ALTER COLUMN "reserved_cost_cny" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "content_safety_preflights" ADD CONSTRAINT "content_safety_preflights_reserved_cost_nonnegative" CHECK ("content_safety_preflights"."reserved_cost_cny" is null or "content_safety_preflights"."reserved_cost_cny" >= 0);

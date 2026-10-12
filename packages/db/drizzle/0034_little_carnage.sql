@@ -1,0 +1,3 @@
+ALTER TABLE "billable_skus" DROP CONSTRAINT "billable_skus_cost_nonnegative";--> statement-breakpoint
+ALTER TABLE "billable_skus" ALTER COLUMN "provider_cost_per_unit_cny" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "billable_skus" ADD CONSTRAINT "billable_skus_cost_nonnegative" CHECK ("billable_skus"."provider_cost_per_unit_cny" is null or "billable_skus"."provider_cost_per_unit_cny" >= 0);

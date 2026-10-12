@@ -1,0 +1,27 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [
+      "apps/web/.next/**",
+      "apps/web/.turbo/**",
+      "apps/web/node_modules/**",
+      "apps/web/playwright-report/**",
+      "apps/web/test-results/**",
+      "apps/web/**/*.tsbuildinfo"
+    ],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-08-09",
+        "reason": "Inter is the reviewed Latin companion font in the Ecom Forge design system."
+      }
+    ],
+    "designSystem": {
+      "enabled": false
+    }
+  },
+  "hook": {
+    "enabled": false
+  }
+}

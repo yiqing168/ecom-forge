@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX "model_catalog_entries_approved_default_category_unique" ON "model_catalog_entries" USING btree ("category") WHERE "model_catalog_entries"."is_default" = true and "model_catalog_entries"."status" = 'approved';

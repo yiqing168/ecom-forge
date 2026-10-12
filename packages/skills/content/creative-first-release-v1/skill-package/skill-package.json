@@ -1,0 +1,1298 @@
+{
+  "schema_version": 1,
+  "package_id": "creative-first-release",
+  "package_version": "1.4.43",
+  "min_runtime_version": "1.0.0",
+  "skills": [
+    {
+      "skill_id": "cinematic-story-poster@1.1.0",
+      "definition_path": "skill-package/skills/cinematic-story-poster/SKILL.md",
+      "definition_hash": "90077f115b7194614e68ff207aba5a6aaad6aa2b12f84b9ada595b94e94c71da"
+    },
+    {
+      "skill_id": "creative-cross-image-narrative@1.0.0",
+      "definition_path": "skill-package/skills/creative-cross-image-narrative/SKILL.md",
+      "definition_hash": "fb224be31e5dd3d475e30f3ca03145657bee7761e392de4c0b5f89197916c317"
+    },
+    {
+      "skill_id": "creative-free-generation@1.0.1",
+      "definition_path": "skill-package/skills/creative-free-generation/SKILL.md",
+      "definition_hash": "5f5b60a52fca5bdecee307dd344c0f8af0173ba6facc23cc5fcd1bacbe882514"
+    },
+    {
+      "skill_id": "creative-image-prompting@1.1.0",
+      "definition_path": "skill-package/skills/creative-image-prompting/SKILL.md",
+      "definition_hash": "41ea9a2f16463af123035ebf70b0b45460fe245d9635c4771c80dfeb4bce221c"
+    },
+    {
+      "skill_id": "creative-identity-fidelity@1.0.0",
+      "definition_path": "skill-package/skills/creative-identity-fidelity/SKILL.md",
+      "definition_hash": "350c33e259b8597785593186ba71b3f03c58651734436a0ba533f441e9cabe9b"
+    },
+    {
+      "skill_id": "creative-material-role@1.0.0",
+      "definition_path": "skill-package/skills/creative-material-role/SKILL.md",
+      "definition_hash": "5f3a7e158f0c68c81eae68bde156d30c41870ac5063dd6306808ccac5359a1f6"
+    },
+    {
+      "skill_id": "creative-originality-isolation@1.0.0",
+      "definition_path": "skill-package/skills/creative-originality-isolation/SKILL.md",
+      "definition_hash": "da29206a8c6ed2fd580cc7a176b14fbac5d0d37dd85e393c7b4c660c9aff012a"
+    },
+    {
+      "skill_id": "creative-portrait-renewal@1.0.0",
+      "definition_path": "skill-package/skills/creative-portrait-renewal/SKILL.md",
+      "definition_hash": "605854a87a90ae9d7d3b874e015478415ec2fa39214e4b5096479a1d8f2e36b4"
+    },
+    {
+      "skill_id": "creative-scene-collage@1.4.2",
+      "definition_path": "skill-package/skills/creative-scene-collage/SKILL.md",
+      "definition_hash": "b4d48de0b7a5397032ec5206f3800962c16c811b660341fe03935434f7238a0a"
+    },
+    {
+      "skill_id": "creative-scene-reimagining@1.3.1",
+      "definition_path": "skill-package/skills/creative-scene-reimagining/SKILL.md",
+      "definition_hash": "dae23509a66f6aaf740d14523049c6690a781578d8c7d99317f163836b17e995"
+    },
+    {
+      "skill_id": "creative-visual-relationships@1.0.0",
+      "definition_path": "skill-package/skills/creative-visual-relationships/SKILL.md",
+      "definition_hash": "6adb667302fc2e71ed036116c7df66c2f2dffa167de33b013daa994d347d21b5"
+    },
+    {
+      "skill_id": "daily-memory-page@1.1.0",
+      "definition_path": "skill-package/skills/daily-memory-page/SKILL.md",
+      "definition_hash": "0d2014bdb1b9bbe694377afae843305d88c0082657e8ec2a86803e0d8d77b815"
+    },
+    {
+      "skill_id": "minimal-scene-collage@4.3.1",
+      "definition_path": "skill-package/skills/minimal-scene-collage/SKILL.md",
+      "definition_hash": "f36513ed52cfa6abc375f3d14c5b63c74281607a4c606b794e392d1435693318"
+    },
+    {
+      "skill_id": "social-contrast-poster@1.1.0",
+      "definition_path": "skill-package/skills/social-contrast-poster/SKILL.md",
+      "definition_hash": "067d179f9040cf0e0d5b87fb82b85fd21c47f0a5dfa4f84c5235827f957c3abc"
+    },
+    {
+      "skill_id": "void-line-poster@1.2.0",
+      "definition_path": "skill-package/skills/void-line-poster/SKILL.md",
+      "definition_hash": "1433f639b511e35357e9c70d9cd7d1915d7de7a139b1f059e83f5d6c0d3cbe3b"
+    },
+    {
+      "skill_id": "xieyi-scene-collage@1.0.0",
+      "definition_path": "skill-package/skills/xieyi-scene-collage/SKILL.md",
+      "definition_hash": "4ae8a3016086911824b5ce56829e368d7b585b06e9e331c4503e45d7d1d91e1a"
+    },
+    {
+      "skill_id": "second-world-photo-remix@1.0.4",
+      "definition_path": "skill-package/skills/second-world-photo-remix/SKILL.md",
+      "definition_hash": "23cec7e918bb50f125ff404bf47e58b70911511d33369a852bdeefc91a9aa38c"
+    },
+    {
+      "skill_id": "watercolor-scene-collage@1.0.1",
+      "definition_path": "skill-package/skills/watercolor-scene-collage/SKILL.md",
+      "definition_hash": "ab3aa1e3e9d2c910e947901a4359a685d07b0e78e49656d488e2924a78607bc0"
+    }
+  ],
+  "skill_profiles": {
+    "cinematic-story-poster@1.1.0": {
+      "slug": "cinematic-story-poster",
+      "version": "1.1.0",
+      "display_name": "叙事电影海报",
+      "kind": "primary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 85,
+      "required_inputs": ["creative-brief"],
+      "required_facts": [],
+      "required_capabilities": ["image.generate", "image.edit"],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [],
+      "dependencies": [
+        {
+          "skill_id": "creative-image-prompting@1.1.0",
+          "mode": "required",
+          "reason": "Use the shared Codex-derived image prompting method."
+        }
+      ],
+      "references": [],
+      "execution_policy": {
+        "version": 1,
+        "family": "optional_references",
+        "max_sources": 9
+      },
+      "attachment_roles": [
+        {
+          "role": "semantic_reference",
+          "label": "实景照片"
+        },
+        {
+          "role": "style_reference",
+          "label": "风格参考"
+        },
+        {
+          "role": "composition_reference",
+          "label": "构图参考"
+        },
+        {
+          "role": "other",
+          "label": "其他"
+        }
+      ],
+      "catalog_enabled": false
+    },
+    "creative-cross-image-narrative@1.0.0": {
+      "slug": "creative-cross-image-narrative",
+      "version": "1.0.0",
+      "display_name": "跨图叙事差异",
+      "kind": "auxiliary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 240,
+      "required_inputs": [],
+      "required_facts": [],
+      "required_capabilities": [],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "internal"
+      },
+      "preset_slots": [],
+      "dependencies": [],
+      "references": []
+    },
+    "creative-free-generation@1.0.1": {
+      "slug": "creative-free-generation",
+      "version": "1.0.1",
+      "display_name": "自由创作",
+      "kind": "primary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 20,
+      "required_inputs": [],
+      "required_facts": [],
+      "required_capabilities": ["image.generate"],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [],
+      "dependencies": [
+        {
+          "skill_id": "creative-image-prompting@1.1.0",
+          "mode": "optional",
+          "reason": "需要把简短指令扩展成可执行图像描述时使用；完整提示词不必重新编写。"
+        },
+        {
+          "skill_id": "creative-originality-isolation@1.0.0",
+          "mode": "optional",
+          "reason": "参考图存在时保持原创隔离。"
+        },
+        {
+          "skill_id": "creative-visual-relationships@1.0.0",
+          "mode": "optional",
+          "reason": "组织主体层级、留白和光色关系。"
+        },
+        {
+          "skill_id": "creative-material-role@1.0.0",
+          "mode": "optional",
+          "reason": "用户加入参考图时固定素材职责。"
+        }
+      ],
+      "references": [
+        {
+          "path": "references/visual-decision-method.md",
+          "purpose": "当主题宽泛、需要多图差异或构图候选取舍时，建立视觉命题并选择可解释方案。"
+        },
+        {
+          "path": "references/quality-check.md",
+          "purpose": "检查意图完整、构图清晰、参考隔离和多图差异。"
+        }
+      ],
+      "execution_policy": {
+        "version": 1,
+        "family": "text_generation",
+        "max_sources": 9
+      },
+      "attachment_roles": [
+        {
+          "role": "style_reference",
+          "label": "风格参考"
+        },
+        {
+          "role": "composition_reference",
+          "label": "构图参考"
+        },
+        {
+          "role": "other",
+          "label": "其他"
+        }
+      ],
+      "catalog_enabled": true
+    },
+    "creative-image-prompting@1.1.0": {
+      "slug": "creative-image-prompting",
+      "version": "1.1.0",
+      "display_name": "创意生图提示",
+      "kind": "auxiliary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 205,
+      "required_inputs": [],
+      "required_facts": [],
+      "required_capabilities": [],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "internal"
+      },
+      "preset_slots": [],
+      "dependencies": [],
+      "references": [
+        {
+          "path": "references/prompting.md",
+          "purpose": "Codex-compatible shared prompting principles for detailed and generic image requests."
+        },
+        {
+          "path": "references/sample-prompts.md",
+          "purpose": "Adaptable prompt patterns for image generation, editing, and identity-preserving changes."
+        }
+      ]
+    },
+    "creative-identity-fidelity@1.0.0": {
+      "slug": "creative-identity-fidelity",
+      "version": "1.0.0",
+      "display_name": "身份与关系保真",
+      "kind": "auxiliary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 210,
+      "required_inputs": [],
+      "required_facts": [],
+      "required_capabilities": [],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "internal"
+      },
+      "preset_slots": [],
+      "dependencies": [],
+      "references": []
+    },
+    "creative-material-role@1.0.0": {
+      "slug": "creative-material-role",
+      "version": "1.0.0",
+      "display_name": "创意素材职责",
+      "kind": "auxiliary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 200,
+      "required_inputs": [],
+      "required_facts": [],
+      "required_capabilities": [],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "internal"
+      },
+      "preset_slots": [],
+      "dependencies": [],
+      "references": []
+    },
+    "creative-originality-isolation@1.0.0": {
+      "slug": "creative-originality-isolation",
+      "version": "1.0.0",
+      "display_name": "原创隔离",
+      "kind": "auxiliary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 220,
+      "required_inputs": [],
+      "required_facts": [],
+      "required_capabilities": [],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "internal"
+      },
+      "preset_slots": [],
+      "dependencies": [],
+      "references": []
+    },
+    "creative-portrait-renewal@1.0.0": {
+      "slug": "creative-portrait-renewal",
+      "version": "1.0.0",
+      "display_name": "人像焕新",
+      "kind": "primary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 30,
+      "required_inputs": ["identity_anchor"],
+      "required_facts": ["portrait_rights_confirmed", "allowed_changes_confirmed"],
+      "required_capabilities": ["image.edit"],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [
+        {
+          "slot": "portrait-direction",
+          "label": "人像方向",
+          "required": true,
+          "max_selections": 1,
+          "options": [
+            {
+              "preset_id": "clear-daylight@1.0.0",
+              "name": "清透日光",
+              "description": "自然肤色、柔和日光和真实生活空间。",
+              "resource_path": "presets/clear-daylight.md"
+            },
+            {
+              "preset_id": "refined-studio@1.0.0",
+              "name": "克制棚拍",
+              "description": "简洁背景、稳定塑形光和清楚人物层级。",
+              "resource_path": "presets/refined-studio.md"
+            },
+            {
+              "preset_id": "documentary-film@1.0.0",
+              "name": "纪实胶片",
+              "description": "现场感、轻颗粒和不过度修饰的情绪色彩。",
+              "resource_path": "presets/documentary-film.md"
+            }
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "skill_id": "creative-image-prompting@1.1.0",
+          "mode": "required",
+          "reason": "Use the shared Codex-derived image prompting method."
+        },
+        {
+          "skill_id": "creative-identity-fidelity@1.0.0",
+          "mode": "required",
+          "reason": "固定人物身份、关系和允许变化范围。"
+        },
+        {
+          "skill_id": "creative-material-role@1.0.0",
+          "mode": "required",
+          "reason": "区分身份主图与视觉参考图。"
+        },
+        {
+          "skill_id": "creative-visual-relationships@1.0.0",
+          "mode": "optional",
+          "reason": "改善人物、空间和光线关系。"
+        }
+      ],
+      "references": [
+        {
+          "path": "references/portrait-photography-decisions.md",
+          "purpose": "当原片平淡、多人关系复杂或用户要求显著提升摄影完成度时，选择人物状态、观看距离、光线和空间关系。"
+        },
+        {
+          "path": "references/quality-check.md",
+          "purpose": "检查身份、关系、允许变化和人像自然度。"
+        }
+      ],
+      "execution_policy": {
+        "version": 1,
+        "family": "identity_edit",
+        "max_sources": 9
+      },
+      "attachment_roles": [
+        {
+          "role": "identity_anchor",
+          "label": "身份主图"
+        },
+        {
+          "role": "style_reference",
+          "label": "风格参考"
+        },
+        {
+          "role": "composition_reference",
+          "label": "构图参考"
+        },
+        {
+          "role": "other",
+          "label": "其他"
+        }
+      ],
+      "catalog_enabled": false
+    },
+    "creative-scene-collage@1.4.2": {
+      "slug": "creative-scene-collage",
+      "version": "1.4.2",
+      "display_name": "实景拼贴",
+      "kind": "primary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 81,
+      "required_inputs": ["semantic-reference"],
+      "required_facts": [],
+      "required_capabilities": ["image.edit"],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [],
+      "dependencies": [
+        {
+          "skill_id": "creative-image-prompting@1.1.0",
+          "mode": "required",
+          "reason": "Use the shared Codex-derived image prompting method."
+        }
+      ],
+      "references": [],
+      "execution_policy": {
+        "version": 1,
+        "family": "independent_sources",
+        "max_sources": 9
+      },
+      "attachment_roles": [
+        {
+          "role": "semantic_reference",
+          "label": "实景照片"
+        }
+      ],
+      "catalog_enabled": true
+    },
+    "creative-scene-reimagining@1.3.1": {
+      "slug": "creative-scene-reimagining",
+      "version": "1.3.1",
+      "display_name": "照片意象重绘",
+      "kind": "primary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 40,
+      "required_inputs": ["authorized-scene-photo"],
+      "required_facts": [],
+      "required_capabilities": ["image.edit"],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [],
+      "dependencies": [
+        {
+          "skill_id": "creative-image-prompting@1.1.0",
+          "mode": "required",
+          "reason": "Use the shared Codex-derived image prompting method."
+        },
+        {
+          "skill_id": "creative-material-role@1.0.0",
+          "mode": "required",
+          "reason": "固定源照片是创作证据而非待保留像素。"
+        },
+        {
+          "skill_id": "creative-visual-relationships@1.0.0",
+          "mode": "required",
+          "reason": "从可观察关系建立视觉命题，不用情绪套公式。"
+        },
+        {
+          "skill_id": "creative-originality-isolation@1.0.0",
+          "mode": "required",
+          "reason": "形成独立构图、形式语言和观看路径。"
+        }
+      ],
+      "references": [],
+      "execution_policy": {
+        "version": 1,
+        "family": "independent_sources",
+        "max_sources": 9
+      },
+      "attachment_roles": [
+        {
+          "role": "semantic_reference",
+          "label": "实景照片"
+        }
+      ],
+      "catalog_enabled": true
+    },
+    "creative-visual-relationships@1.0.0": {
+      "slug": "creative-visual-relationships",
+      "version": "1.0.0",
+      "display_name": "视觉重量与视线关系",
+      "kind": "auxiliary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 230,
+      "required_inputs": [],
+      "required_facts": [],
+      "required_capabilities": [],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "internal"
+      },
+      "preset_slots": [],
+      "dependencies": [],
+      "references": []
+    },
+    "daily-memory-page@1.1.0": {
+      "slug": "daily-memory-page",
+      "version": "1.1.0",
+      "display_name": "实景转译·日常记忆页",
+      "kind": "primary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 84,
+      "required_inputs": ["semantic-reference"],
+      "required_facts": [],
+      "required_capabilities": ["image.edit"],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [],
+      "dependencies": [
+        {
+          "skill_id": "creative-image-prompting@1.1.0",
+          "mode": "required",
+          "reason": "Use the shared Codex-derived image prompting method."
+        }
+      ],
+      "references": [],
+      "execution_policy": {
+        "version": 1,
+        "family": "independent_sources",
+        "max_sources": 9
+      },
+      "attachment_roles": [
+        {
+          "role": "semantic_reference",
+          "label": "实景照片"
+        }
+      ],
+      "catalog_enabled": true
+    },
+    "social-contrast-poster@1.1.0": {
+      "slug": "social-contrast-poster",
+      "version": "1.1.0",
+      "display_name": "日常反差海报",
+      "kind": "primary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 86,
+      "required_inputs": ["semantic-reference"],
+      "required_facts": [],
+      "required_capabilities": ["image.edit"],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [],
+      "dependencies": [
+        {
+          "skill_id": "creative-image-prompting@1.1.0",
+          "mode": "required",
+          "reason": "Use the shared Codex-derived image prompting method."
+        }
+      ],
+      "references": [],
+      "execution_policy": {
+        "version": 1,
+        "family": "reference_composition",
+        "max_sources": 6
+      },
+      "attachment_roles": [
+        {
+          "role": "semantic_reference",
+          "label": "实景照片"
+        }
+      ],
+      "catalog_enabled": true
+    },
+    "void-line-poster@1.2.0": {
+      "slug": "void-line-poster",
+      "version": "1.2.0",
+      "display_name": "虚空线稿",
+      "kind": "primary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 87,
+      "required_inputs": ["semantic-reference"],
+      "required_facts": [],
+      "required_capabilities": ["image.edit"],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [],
+      "dependencies": [
+        {
+          "skill_id": "creative-image-prompting@1.1.0",
+          "mode": "required",
+          "reason": "Use the shared Codex-derived image prompting method."
+        }
+      ],
+      "references": [],
+      "execution_policy": {
+        "version": 1,
+        "family": "independent_sources",
+        "max_sources": 9
+      },
+      "attachment_roles": [
+        {
+          "role": "semantic_reference",
+          "label": "实景照片"
+        }
+      ],
+      "catalog_enabled": true
+    },
+    "xieyi-scene-collage@1.0.0": {
+      "slug": "xieyi-scene-collage",
+      "version": "1.0.0",
+      "display_name": "实景拼贴·写意纸境",
+      "kind": "primary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 82,
+      "required_inputs": ["semantic-reference"],
+      "required_facts": [],
+      "required_capabilities": ["image.edit"],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [],
+      "dependencies": [
+        {
+          "skill_id": "creative-image-prompting@1.1.0",
+          "mode": "required",
+          "reason": "Use the shared Codex-derived image prompting method."
+        }
+      ],
+      "references": [],
+      "execution_policy": {
+        "version": 1,
+        "family": "independent_sources",
+        "max_sources": 9
+      },
+      "attachment_roles": [
+        {
+          "role": "semantic_reference",
+          "label": "实景照片"
+        }
+      ],
+      "catalog_enabled": false
+    },
+    "minimal-scene-collage@4.3.1": {
+      "slug": "minimal-scene-collage",
+      "version": "4.3.1",
+      "display_name": "极简拼贴",
+      "kind": "primary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 83,
+      "required_inputs": ["semantic-reference"],
+      "required_facts": [],
+      "required_capabilities": ["image.edit"],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [],
+      "dependencies": [
+        {
+          "skill_id": "creative-image-prompting@1.1.0",
+          "mode": "required",
+          "reason": "Use the shared Codex-derived image prompting method."
+        }
+      ],
+      "references": [],
+      "execution_policy": {
+        "version": 1,
+        "family": "independent_sources",
+        "max_sources": 9
+      },
+      "attachment_roles": [
+        {
+          "role": "semantic_reference",
+          "label": "实景照片"
+        }
+      ],
+      "catalog_enabled": true
+    },
+    "second-world-photo-remix@1.0.4": {
+      "slug": "second-world-photo-remix",
+      "version": "1.0.4",
+      "display_name": "实景延伸线稿",
+      "kind": "primary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 88,
+      "required_inputs": ["semantic-reference"],
+      "required_facts": [],
+      "required_capabilities": ["image.edit"],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [],
+      "dependencies": [
+        {
+          "skill_id": "creative-image-prompting@1.1.0",
+          "mode": "required",
+          "reason": "Use the shared Codex-derived image prompting method."
+        }
+      ],
+      "references": [],
+      "execution_policy": {
+        "version": 1,
+        "family": "independent_sources",
+        "max_sources": 9
+      },
+      "attachment_roles": [
+        {
+          "role": "semantic_reference",
+          "label": "实景照片"
+        }
+      ],
+      "catalog_enabled": true
+    },
+    "watercolor-scene-collage@1.0.1": {
+      "slug": "watercolor-scene-collage",
+      "version": "1.0.1",
+      "display_name": "实景拼贴-水彩",
+      "kind": "primary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 83,
+      "required_inputs": ["semantic-reference"],
+      "required_facts": [],
+      "required_capabilities": ["image.edit"],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [],
+      "dependencies": [
+        {
+          "skill_id": "creative-image-prompting@1.1.0",
+          "mode": "required",
+          "reason": "Use the shared image prompting method without replacing the primary watercolor instructions."
+        }
+      ],
+      "references": [],
+      "execution_policy": {
+        "version": 1,
+        "family": "independent_sources",
+        "max_sources": 9
+      },
+      "attachment_roles": [
+        {
+          "role": "semantic_reference",
+          "label": "实景照片"
+        }
+      ],
+      "catalog_enabled": true
+    }
+  },
+  "resources": [
+    {
+      "path": "skill-package/evals/cinematic-story-poster.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 5899,
+      "content_hash": "6f39087a675fc257a5e2de0616994c1c370e586b7b9afa8b42775bb41754f87f"
+    },
+    {
+      "path": "skill-package/evals/creative-free-generation.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 2756,
+      "content_hash": "893d3aec09143ca5aa0b869ccb6007fa8aca2a016bf13aa8b58cafb3f27417ce"
+    },
+    {
+      "path": "skill-package/evals/creative-portrait-renewal.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 3215,
+      "content_hash": "c990001dba2c26354e2f1a36203fcffaa685fed5c38984d8f3bbe8af21931fdf"
+    },
+    {
+      "path": "skill-package/evals/creative-scene-collage.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 16583,
+      "content_hash": "f9f8051da352984f69fb2fd85c1ab38e8f8ed35af23829f3a00655aebc5b4fe6"
+    },
+    {
+      "path": "skill-package/evals/creative-scene-reimagining.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 8423,
+      "content_hash": "a61fdb9eb4d7734c0cf9bda27e8c5cd79615a51521c2953c260b18877fd7291b"
+    },
+    {
+      "path": "skill-package/evals/daily-memory-page.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 5836,
+      "content_hash": "cfa98936f2e541b098ccf1c490e4f37c9fc55f061abfcebd387c462c891b8b52"
+    },
+    {
+      "path": "skill-package/evals/minimal-scene-collage.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 25951,
+      "content_hash": "e142a249ded7d27d6232b4419088889604f6f48e955dd6d3937f445e41c00184"
+    },
+    {
+      "path": "skill-package/evals/social-contrast-poster.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 6269,
+      "content_hash": "5094f95d9e25293a7ede19b4c7078685582ac52c0ebe92e6ae15ccb0914c8d88"
+    },
+    {
+      "path": "skill-package/evals/void-line-poster.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 15056,
+      "content_hash": "438d0277956f3b7462da53ef3d25bd7aa77e728f6cdaebc2d916d7c31115319a"
+    },
+    {
+      "path": "skill-package/evals/xieyi-scene-collage.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 5361,
+      "content_hash": "fedab119c55163343c3cd74084d5e0b8cf086c8c23d85a931bb46f43d8ce8485"
+    },
+    {
+      "path": "skill-package/skills/cinematic-story-poster/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 15165,
+      "content_hash": "90077f115b7194614e68ff207aba5a6aaad6aa2b12f84b9ada595b94e94c71da"
+    },
+    {
+      "path": "skill-package/skills/creative-cross-image-narrative/SKILL.md",
+      "purpose": "auxiliary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 564,
+      "content_hash": "fb224be31e5dd3d475e30f3ca03145657bee7761e392de4c0b5f89197916c317"
+    },
+    {
+      "path": "skill-package/skills/creative-free-generation/references/quality-check.md",
+      "purpose": "L2 quality reference",
+      "media_type": "text/markdown",
+      "byte_size": 419,
+      "content_hash": "e59481bc61831838a59fed22f416eb3740005c4430cd80006a3e6e0d9dfddace"
+    },
+    {
+      "path": "skill-package/skills/creative-free-generation/references/visual-decision-method.md",
+      "purpose": "L2 quality reference",
+      "media_type": "text/markdown",
+      "byte_size": 1736,
+      "content_hash": "57057a5cd703d7bc560ab3db40a11bae13166b5f4152fdf63ac7e005513a8224"
+    },
+    {
+      "path": "skill-package/skills/creative-free-generation/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 2780,
+      "content_hash": "5f5b60a52fca5bdecee307dd344c0f8af0173ba6facc23cc5fcd1bacbe882514"
+    },
+    {
+      "path": "skill-package/skills/creative-image-prompting/SKILL.md",
+      "purpose": "auxiliary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 5992,
+      "content_hash": "41ea9a2f16463af123035ebf70b0b45460fe245d9635c4771c80dfeb4bce221c"
+    },
+    {
+      "path": "skill-package/skills/creative-image-prompting/references/prompting.md",
+      "purpose": "L2 quality reference",
+      "media_type": "text/markdown",
+      "byte_size": 3308,
+      "content_hash": "c1434b93be405d66812c81cc4ddf7628013a697d4d001443b83b5edc8b546854"
+    },
+    {
+      "path": "skill-package/skills/creative-image-prompting/references/sample-prompts.md",
+      "purpose": "L2 quality reference",
+      "media_type": "text/markdown",
+      "byte_size": 2459,
+      "content_hash": "2361317c14596857c798d0c08a3c4e88b41cc51b0023561131de001bb87f9f3b"
+    },
+    {
+      "path": "skill-package/skills/creative-identity-fidelity/SKILL.md",
+      "purpose": "auxiliary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 614,
+      "content_hash": "350c33e259b8597785593186ba71b3f03c58651734436a0ba533f441e9cabe9b"
+    },
+    {
+      "path": "skill-package/skills/creative-material-role/SKILL.md",
+      "purpose": "auxiliary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 631,
+      "content_hash": "5f3a7e158f0c68c81eae68bde156d30c41870ac5063dd6306808ccac5359a1f6"
+    },
+    {
+      "path": "skill-package/skills/creative-originality-isolation/SKILL.md",
+      "purpose": "auxiliary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 579,
+      "content_hash": "da29206a8c6ed2fd580cc7a176b14fbac5d0d37dd85e393c7b4c660c9aff012a"
+    },
+    {
+      "path": "skill-package/skills/creative-portrait-renewal/presets/clear-daylight.md",
+      "purpose": "presentation preset",
+      "media_type": "text/markdown",
+      "byte_size": 257,
+      "content_hash": "70f310ac819757e5f2663fda3d4ba83f31539427a35602eb6cd72b7da9854315"
+    },
+    {
+      "path": "skill-package/skills/creative-portrait-renewal/presets/documentary-film.md",
+      "purpose": "presentation preset",
+      "media_type": "text/markdown",
+      "byte_size": 236,
+      "content_hash": "101eaf3c9a4dc834c9f3f2bdb771634c2ede356f22e19662cbd56843632bf9fe"
+    },
+    {
+      "path": "skill-package/skills/creative-portrait-renewal/presets/refined-studio.md",
+      "purpose": "presentation preset",
+      "media_type": "text/markdown",
+      "byte_size": 224,
+      "content_hash": "8de073d0a74757086552c46732affbc6ac0021fb420a5673a54eae665cd261ac"
+    },
+    {
+      "path": "skill-package/skills/creative-portrait-renewal/references/portrait-photography-decisions.md",
+      "purpose": "L2 quality reference",
+      "media_type": "text/markdown",
+      "byte_size": 1499,
+      "content_hash": "263425c2135945192624a66dfa0dd69d6ccd5f690337003d16772bd1ab20bc77"
+    },
+    {
+      "path": "skill-package/skills/creative-portrait-renewal/references/quality-check.md",
+      "purpose": "L2 quality reference",
+      "media_type": "text/markdown",
+      "byte_size": 425,
+      "content_hash": "4d97033092412faed8215953e31e18e45250db0ecf7a2bf466aeb92292c415a9"
+    },
+    {
+      "path": "skill-package/skills/creative-portrait-renewal/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 2811,
+      "content_hash": "605854a87a90ae9d7d3b874e015478415ec2fa39214e4b5096479a1d8f2e36b4"
+    },
+    {
+      "path": "skill-package/skills/creative-scene-collage/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 13759,
+      "content_hash": "b4d48de0b7a5397032ec5206f3800962c16c811b660341fe03935434f7238a0a"
+    },
+    {
+      "path": "skill-package/skills/creative-scene-reimagining/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 11137,
+      "content_hash": "dae23509a66f6aaf740d14523049c6690a781578d8c7d99317f163836b17e995"
+    },
+    {
+      "path": "skill-package/skills/creative-visual-relationships/SKILL.md",
+      "purpose": "auxiliary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 1104,
+      "content_hash": "6adb667302fc2e71ed036116c7df66c2f2dffa167de33b013daa994d347d21b5"
+    },
+    {
+      "path": "skill-package/skills/daily-memory-page/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 14371,
+      "content_hash": "0d2014bdb1b9bbe694377afae843305d88c0082657e8ec2a86803e0d8d77b815"
+    },
+    {
+      "path": "skill-package/skills/minimal-scene-collage/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 15205,
+      "content_hash": "f36513ed52cfa6abc375f3d14c5b63c74281607a4c606b794e392d1435693318"
+    },
+    {
+      "path": "skill-package/skills/social-contrast-poster/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 13790,
+      "content_hash": "067d179f9040cf0e0d5b87fb82b85fd21c47f0a5dfa4f84c5235827f957c3abc"
+    },
+    {
+      "path": "skill-package/skills/void-line-poster/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 6322,
+      "content_hash": "1433f639b511e35357e9c70d9cd7d1915d7de7a139b1f059e83f5d6c0d3cbe3b"
+    },
+    {
+      "path": "skill-package/skills/xieyi-scene-collage/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 11184,
+      "content_hash": "4ae8a3016086911824b5ce56829e368d7b585b06e9e331c4503e45d7d1d91e1a"
+    },
+    {
+      "path": "skill-package/skills/second-world-photo-remix/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 8119,
+      "content_hash": "23cec7e918bb50f125ff404bf47e58b70911511d33369a852bdeefc91a9aa38c"
+    },
+    {
+      "path": "skill-package/evals/second-world-photo-remix.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 9430,
+      "content_hash": "45e1f63da8843e5867fbb030d63ead400e1cb98edc1c5cdf2374bbb5022126ac"
+    },
+    {
+      "path": "skill-package/skills/watercolor-scene-collage/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 7738,
+      "content_hash": "ab3aa1e3e9d2c910e947901a4359a685d07b0e78e49656d488e2924a78607bc0"
+    },
+    {
+      "path": "skill-package/evals/watercolor-scene-collage.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 9069,
+      "content_hash": "b6112e276e1c5c6589960bc89983c7039bcfa6f07a0b0a2138e99f1ff0017bf5"
+    }
+  ],
+  "eval_datasets": [
+    "skill-package/evals/cinematic-story-poster.jsonl",
+    "skill-package/evals/creative-free-generation.jsonl",
+    "skill-package/evals/creative-portrait-renewal.jsonl",
+    "skill-package/evals/creative-scene-collage.jsonl",
+    "skill-package/evals/creative-scene-reimagining.jsonl",
+    "skill-package/evals/daily-memory-page.jsonl",
+    "skill-package/evals/minimal-scene-collage.jsonl",
+    "skill-package/evals/social-contrast-poster.jsonl",
+    "skill-package/evals/void-line-poster.jsonl",
+    "skill-package/evals/xieyi-scene-collage.jsonl",
+    "skill-package/evals/second-world-photo-remix.jsonl",
+    "skill-package/evals/watercolor-scene-collage.jsonl"
+  ],
+  "assets": [],
+  "source_provenance": {
+    "type": "first_party",
+    "summary_digest": "8221eca889ddc25501f620488ec40ae2f558f9132741ef215fd7f4837a4f2e84"
+  },
+  "license_summary": [
+    {
+      "path": "skill-package/evals/cinematic-story-poster.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/evals/creative-free-generation.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/evals/creative-portrait-renewal.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/evals/creative-scene-collage.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/evals/creative-scene-reimagining.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/evals/daily-memory-page.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/evals/minimal-scene-collage.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/evals/social-contrast-poster.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/evals/void-line-poster.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/evals/xieyi-scene-collage.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/cinematic-story-poster/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/creative-cross-image-narrative/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/creative-free-generation/references/quality-check.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/creative-free-generation/references/visual-decision-method.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/creative-free-generation/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/creative-image-prompting/SKILL.md",
+      "license": "Apache-2.0; modified",
+      "rights_holder": "OpenAI (original); ecom-forge (modifications)"
+    },
+    {
+      "path": "skill-package/skills/creative-image-prompting/references/prompting.md",
+      "license": "Apache-2.0; modified",
+      "rights_holder": "OpenAI (original); ecom-forge (modifications)"
+    },
+    {
+      "path": "skill-package/skills/creative-image-prompting/references/sample-prompts.md",
+      "license": "Apache-2.0; modified",
+      "rights_holder": "OpenAI (original); ecom-forge (modifications)"
+    },
+    {
+      "path": "skill-package/skills/creative-identity-fidelity/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/creative-material-role/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/creative-originality-isolation/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/creative-portrait-renewal/presets/clear-daylight.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/creative-portrait-renewal/presets/documentary-film.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/creative-portrait-renewal/presets/refined-studio.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/creative-portrait-renewal/references/portrait-photography-decisions.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/creative-portrait-renewal/references/quality-check.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/creative-portrait-renewal/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/creative-scene-collage/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/creative-scene-reimagining/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/creative-visual-relationships/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/daily-memory-page/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/minimal-scene-collage/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/social-contrast-poster/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/void-line-poster/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/xieyi-scene-collage/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/second-world-photo-remix/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge; maintainer-confirmed authorization (2026-10-12)"
+    },
+    {
+      "path": "skill-package/evals/second-world-photo-remix.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/watercolor-scene-collage/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/evals/watercolor-scene-collage.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    }
+  ]
+}

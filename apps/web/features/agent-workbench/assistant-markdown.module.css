@@ -1,0 +1,159 @@
+.markdown {
+  min-width: 0;
+  max-width: 100%;
+  color: var(--foreground);
+  font-size: 15px;
+  line-height: 28px;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.markdown > :first-child {
+  margin-top: 0;
+}
+.markdown > :last-child {
+  margin-bottom: 0;
+}
+.markdown p {
+  margin: 12px 0;
+  white-space: pre-line;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  margin: 22px 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+}
+.markdown h1,
+.markdown h2 {
+  font-size: 18px;
+  line-height: 28px;
+}
+.markdown strong {
+  font-weight: 600;
+}
+.markdown ul,
+.markdown ol {
+  margin: 12px 0;
+  padding-left: 24px;
+}
+.markdown ul {
+  list-style-type: disc;
+}
+.markdown ol {
+  list-style-type: decimal;
+}
+.markdown li {
+  margin: 5px 0;
+  padding-left: 3px;
+}
+.markdown li > p {
+  margin: 6px 0;
+}
+.markdown li > ul,
+.markdown li > ol {
+  margin: 4px 0;
+}
+.markdown li::marker {
+  color: var(--muted-foreground);
+}
+.markdown input[type='checkbox'] {
+  margin-right: 8px;
+  accent-color: var(--primary);
+}
+.markdown blockquote {
+  margin: 16px 0;
+  padding-left: 16px;
+  border-left: 2px solid var(--border);
+  color: var(--muted-foreground);
+}
+.markdown a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.markdown a:hover {
+  text-decoration-thickness: 2px;
+}
+.markdown a:focus-visible,
+.markdown pre:focus-visible,
+.tableScroll:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+.markdown code {
+  border-radius: 4px;
+  background: var(--soft);
+  padding: 2px 5px;
+  font-size: 13px;
+}
+.markdown pre {
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--soft);
+  margin: 16px 0;
+  padding: 14px 16px;
+  line-height: 22px;
+  white-space: pre;
+  overflow-wrap: normal;
+}
+.markdown pre code {
+  border-radius: 0;
+  background: none;
+  padding: 0;
+}
+.tableScroll {
+  max-width: 100%;
+  margin: 16px 0;
+  overflow-x: auto;
+}
+.markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 24px;
+}
+.markdown th,
+.markdown td {
+  border-bottom: 1px solid var(--border);
+  padding: 9px 12px;
+  min-width: 112px;
+  text-align: start;
+  vertical-align: top;
+}
+.markdown th {
+  font-weight: 600;
+  background: var(--soft);
+}
+.markdown hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 16px;
+  margin-left: 3px;
+  background: var(--primary);
+  vertical-align: middle;
+  animation: pulse 1s ease-in-out infinite;
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.25;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    animation: none;
+  }
+}

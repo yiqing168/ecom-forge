@@ -1,0 +1,1 @@
+DROP INDEX "pricing_catalog_releases_digest_unique";

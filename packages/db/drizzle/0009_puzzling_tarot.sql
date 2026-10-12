@@ -1,0 +1,1 @@
+ALTER TABLE "registration_claims" ADD COLUMN "request_hash" text NOT NULL;

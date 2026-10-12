@@ -1,0 +1,552 @@
+{
+  "schema_version": 1,
+  "package_id": "commerce-white-background-first-release",
+  "package_version": "1.0.2",
+  "min_runtime_version": "1.0.0",
+  "skills": [
+    {
+      "skill_id": "commerce-white-background@1.0.0",
+      "definition_path": "skill-package/skills/commerce-white-background/SKILL.md",
+      "definition_hash": "05abd1f6a05f7eb014a6867057995eb9bf22c505edd9309bdcae2b33f788c07c"
+    },
+    {
+      "skill_id": "commerce-visual-guidance@1.0.0",
+      "definition_path": "skill-package/skills/commerce-visual-guidance/SKILL.md",
+      "definition_hash": "5cc27d804be3dd2ac0bded07f93a6230fc3d4bd2ef3458cd29ee28f91eab8e9c"
+    },
+    {
+      "skill_id": "commerce-human-photography@1.0.0",
+      "definition_path": "skill-package/skills/commerce-human-photography/SKILL.md",
+      "definition_hash": "443003c3bb7904db2a25e90a70851bcf1704c6c42191edba193f35c59dd2540d"
+    },
+    {
+      "skill_id": "commerce-fashion@1.0.0",
+      "definition_path": "skill-package/skills/commerce-fashion/SKILL.md",
+      "definition_hash": "4e0c59776edd5ca91fba605bad3fe9ca9d55b769b4cbbb25db1d1d730c18cace"
+    },
+    {
+      "skill_id": "commerce-beauty@1.0.0",
+      "definition_path": "skill-package/skills/commerce-beauty/SKILL.md",
+      "definition_hash": "69928652d711741f1106cf5494542ef591025ab611f21d825edfca8cf2944f95"
+    },
+    {
+      "skill_id": "commerce-food-beverage@1.0.0",
+      "definition_path": "skill-package/skills/commerce-food-beverage/SKILL.md",
+      "definition_hash": "706c4e175fe9d585be9ce51ad0f4d40c8e4fd9a0425380c6439e273c37e7be9a"
+    },
+    {
+      "skill_id": "commerce-home-lifestyle@1.0.0",
+      "definition_path": "skill-package/skills/commerce-home-lifestyle/SKILL.md",
+      "definition_hash": "6a48129b201acd4caeac69ba9ab310669b877d14f84e39b349c94f0eea8a2c3c"
+    },
+    {
+      "skill_id": "commerce-pet-supplies@1.0.0",
+      "definition_path": "skill-package/skills/commerce-pet-supplies/SKILL.md",
+      "definition_hash": "16f78138ed77a72ceb44f4f21c15dd00f65c38552fc3dfa0d954c8c4bd79d6b9"
+    },
+    {
+      "skill_id": "commerce-sports-outdoor@1.0.0",
+      "definition_path": "skill-package/skills/commerce-sports-outdoor/SKILL.md",
+      "definition_hash": "b0df42a9f24405ec85ed9cdfc5008e14425a7c98e808ab0a3b996ea14b1a67cf"
+    },
+    {
+      "skill_id": "commerce-digital-accessories@1.0.0",
+      "definition_path": "skill-package/skills/commerce-digital-accessories/SKILL.md",
+      "definition_hash": "f4a9f7499a5112299e27a6bde9a06ed9b64dd4ac900c185233025e8e37d1cdb0"
+    }
+  ],
+  "skill_profiles": {
+    "commerce-white-background@1.0.0": {
+      "slug": "commerce-white-background",
+      "version": "1.0.0",
+      "display_name": "商品白底精修",
+      "kind": "primary",
+      "category": "commerce",
+      "domain": "commerce",
+      "stage": "1A",
+      "sort_order": 10,
+      "required_inputs": ["product_image"],
+      "required_facts": ["product_identity", "color", "material", "visible_text"],
+      "required_capabilities": ["image.edit"],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [
+        {
+          "slot": "presentation",
+          "label": "展示方式",
+          "required": true,
+          "max_selections": 1,
+          "options": [
+            {
+              "preset_id": "clean-studio@1.0.0",
+              "name": "纯净棚拍",
+              "description": "均匀白底、清晰轮廓与克制接触阴影。",
+              "resource_path": "presets/clean-studio.md"
+            },
+            {
+              "preset_id": "soft-shadow@1.0.0",
+              "name": "柔和投影",
+              "description": "保持白底，以自然柔影增强落地感。",
+              "resource_path": "presets/soft-shadow.md"
+            },
+            {
+              "preset_id": "elevated-display@1.0.0",
+              "name": "轻盈陈列",
+              "description": "使用低干扰台面关系突出商品层次。",
+              "resource_path": "presets/elevated-display.md"
+            }
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "skill_id": "commerce-visual-guidance@1.0.0",
+          "mode": "required",
+          "reason": "提供共享的商品保真、光影和版面检查。"
+        },
+        {
+          "skill_id": "commerce-human-photography@1.0.0",
+          "mode": "optional",
+          "reason": "素材包含真人佩戴或使用关系时加载。"
+        },
+        {
+          "skill_id": "commerce-fashion@1.0.0",
+          "mode": "optional",
+          "reason": "商品事实属于服饰鞋包时加载。"
+        },
+        {
+          "skill_id": "commerce-beauty@1.0.0",
+          "mode": "optional",
+          "reason": "商品事实属于美妆个护时加载。"
+        },
+        {
+          "skill_id": "commerce-food-beverage@1.0.0",
+          "mode": "optional",
+          "reason": "商品事实属于食品饮料时加载。"
+        },
+        {
+          "skill_id": "commerce-home-lifestyle@1.0.0",
+          "mode": "optional",
+          "reason": "商品事实属于家居生活时加载。"
+        },
+        {
+          "skill_id": "commerce-pet-supplies@1.0.0",
+          "mode": "optional",
+          "reason": "商品事实属于宠物用品时加载。"
+        },
+        {
+          "skill_id": "commerce-sports-outdoor@1.0.0",
+          "mode": "optional",
+          "reason": "商品事实属于运动户外时加载。"
+        },
+        {
+          "skill_id": "commerce-digital-accessories@1.0.0",
+          "mode": "optional",
+          "reason": "商品事实属于数码配件时加载。"
+        }
+      ],
+      "references": [
+        {
+          "path": "references/quality-check.md",
+          "purpose": "在形成候选计划前检查商品保真、边缘、白底和文字。"
+        }
+      ],
+      "execution_policy": {
+        "version": 1,
+        "family": "product",
+        "max_sources": 9
+      },
+      "attachment_roles": [
+        {
+          "role": "product",
+          "label": "商品主图"
+        },
+        {
+          "role": "style_reference",
+          "label": "风格参考"
+        },
+        {
+          "role": "composition_reference",
+          "label": "构图参考"
+        },
+        {
+          "role": "other",
+          "label": "其他"
+        }
+      ],
+      "catalog_enabled": false
+    },
+    "commerce-visual-guidance@1.0.0": {
+      "slug": "commerce-visual-guidance",
+      "version": "1.0.0",
+      "display_name": "共享电商视觉",
+      "kind": "auxiliary",
+      "category": "commerce",
+      "domain": "commerce",
+      "stage": "1A",
+      "sort_order": 100,
+      "required_inputs": [],
+      "required_facts": [],
+      "required_capabilities": [],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "internal"
+      },
+      "preset_slots": [],
+      "dependencies": [],
+      "references": []
+    },
+    "commerce-human-photography@1.0.0": {
+      "slug": "commerce-human-photography",
+      "version": "1.0.0",
+      "display_name": "真人商品摄影",
+      "kind": "auxiliary",
+      "category": "commerce",
+      "domain": "commerce",
+      "stage": "1A",
+      "sort_order": 110,
+      "required_inputs": [],
+      "required_facts": [],
+      "required_capabilities": [],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "internal"
+      },
+      "preset_slots": [],
+      "dependencies": [],
+      "references": []
+    },
+    "commerce-fashion@1.0.0": {
+      "slug": "commerce-fashion",
+      "version": "1.0.0",
+      "display_name": "服饰鞋包知识",
+      "kind": "auxiliary",
+      "category": "fashion",
+      "domain": "commerce",
+      "stage": "1A",
+      "sort_order": 120,
+      "required_inputs": [],
+      "required_facts": [],
+      "required_capabilities": [],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "internal"
+      },
+      "preset_slots": [],
+      "dependencies": [],
+      "references": []
+    },
+    "commerce-beauty@1.0.0": {
+      "slug": "commerce-beauty",
+      "version": "1.0.0",
+      "display_name": "美妆个护知识",
+      "kind": "auxiliary",
+      "category": "beauty",
+      "domain": "commerce",
+      "stage": "1A",
+      "sort_order": 130,
+      "required_inputs": [],
+      "required_facts": [],
+      "required_capabilities": [],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "internal"
+      },
+      "preset_slots": [],
+      "dependencies": [],
+      "references": []
+    },
+    "commerce-food-beverage@1.0.0": {
+      "slug": "commerce-food-beverage",
+      "version": "1.0.0",
+      "display_name": "食品饮料知识",
+      "kind": "auxiliary",
+      "category": "food-beverage",
+      "domain": "commerce",
+      "stage": "1A",
+      "sort_order": 140,
+      "required_inputs": [],
+      "required_facts": [],
+      "required_capabilities": [],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "internal"
+      },
+      "preset_slots": [],
+      "dependencies": [],
+      "references": []
+    },
+    "commerce-home-lifestyle@1.0.0": {
+      "slug": "commerce-home-lifestyle",
+      "version": "1.0.0",
+      "display_name": "家居生活知识",
+      "kind": "auxiliary",
+      "category": "home-lifestyle",
+      "domain": "commerce",
+      "stage": "1A",
+      "sort_order": 150,
+      "required_inputs": [],
+      "required_facts": [],
+      "required_capabilities": [],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "internal"
+      },
+      "preset_slots": [],
+      "dependencies": [],
+      "references": []
+    },
+    "commerce-pet-supplies@1.0.0": {
+      "slug": "commerce-pet-supplies",
+      "version": "1.0.0",
+      "display_name": "宠物用品知识",
+      "kind": "auxiliary",
+      "category": "pet-supplies",
+      "domain": "commerce",
+      "stage": "1A",
+      "sort_order": 160,
+      "required_inputs": [],
+      "required_facts": [],
+      "required_capabilities": [],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "internal"
+      },
+      "preset_slots": [],
+      "dependencies": [],
+      "references": []
+    },
+    "commerce-sports-outdoor@1.0.0": {
+      "slug": "commerce-sports-outdoor",
+      "version": "1.0.0",
+      "display_name": "运动户外知识",
+      "kind": "auxiliary",
+      "category": "sports-outdoor",
+      "domain": "commerce",
+      "stage": "1A",
+      "sort_order": 170,
+      "required_inputs": [],
+      "required_facts": [],
+      "required_capabilities": [],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "internal"
+      },
+      "preset_slots": [],
+      "dependencies": [],
+      "references": []
+    },
+    "commerce-digital-accessories@1.0.0": {
+      "slug": "commerce-digital-accessories",
+      "version": "1.0.0",
+      "display_name": "数码配件知识",
+      "kind": "auxiliary",
+      "category": "digital-accessories",
+      "domain": "commerce",
+      "stage": "1A",
+      "sort_order": 180,
+      "required_inputs": [],
+      "required_facts": [],
+      "required_capabilities": [],
+      "default_output_count": 1,
+      "catalog": {
+        "visibility": "internal"
+      },
+      "preset_slots": [],
+      "dependencies": [],
+      "references": []
+    }
+  },
+  "resources": [
+    {
+      "path": "skill-package/skills/commerce-white-background/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 2789,
+      "content_hash": "05abd1f6a05f7eb014a6867057995eb9bf22c505edd9309bdcae2b33f788c07c"
+    },
+    {
+      "path": "skill-package/skills/commerce-white-background/presets/clean-studio.md",
+      "purpose": "presentation preset",
+      "media_type": "text/markdown",
+      "byte_size": 248,
+      "content_hash": "4cb330f9996022c78f7dd19f4711d20f0917dc94337297a5558bd743a6d433ac"
+    },
+    {
+      "path": "skill-package/skills/commerce-white-background/presets/soft-shadow.md",
+      "purpose": "presentation preset",
+      "media_type": "text/markdown",
+      "byte_size": 203,
+      "content_hash": "a32973a693232a0bd5bd93da0352d9d040076eba1ff5b431ef2e4207b95cf4d5"
+    },
+    {
+      "path": "skill-package/skills/commerce-white-background/presets/elevated-display.md",
+      "purpose": "presentation preset",
+      "media_type": "text/markdown",
+      "byte_size": 188,
+      "content_hash": "7571bf7fb31732ea6106848d037d4e1024f251475578531dc96bdf7b5d1746e8"
+    },
+    {
+      "path": "skill-package/skills/commerce-white-background/references/quality-check.md",
+      "purpose": "L2 quality reference",
+      "media_type": "text/markdown",
+      "byte_size": 718,
+      "content_hash": "db29344359d97637d5e0f853717f6da6d9228888563d269f65d85c4537424ab6"
+    },
+    {
+      "path": "skill-package/skills/commerce-visual-guidance/SKILL.md",
+      "purpose": "auxiliary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 576,
+      "content_hash": "5cc27d804be3dd2ac0bded07f93a6230fc3d4bd2ef3458cd29ee28f91eab8e9c"
+    },
+    {
+      "path": "skill-package/skills/commerce-human-photography/SKILL.md",
+      "purpose": "auxiliary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 560,
+      "content_hash": "443003c3bb7904db2a25e90a70851bcf1704c6c42191edba193f35c59dd2540d"
+    },
+    {
+      "path": "skill-package/skills/commerce-fashion/SKILL.md",
+      "purpose": "category auxiliary definition",
+      "media_type": "text/markdown",
+      "byte_size": 2316,
+      "content_hash": "4e0c59776edd5ca91fba605bad3fe9ca9d55b769b4cbbb25db1d1d730c18cace"
+    },
+    {
+      "path": "skill-package/skills/commerce-beauty/SKILL.md",
+      "purpose": "category auxiliary definition",
+      "media_type": "text/markdown",
+      "byte_size": 2282,
+      "content_hash": "69928652d711741f1106cf5494542ef591025ab611f21d825edfca8cf2944f95"
+    },
+    {
+      "path": "skill-package/skills/commerce-food-beverage/SKILL.md",
+      "purpose": "category auxiliary definition",
+      "media_type": "text/markdown",
+      "byte_size": 2176,
+      "content_hash": "706c4e175fe9d585be9ce51ad0f4d40c8e4fd9a0425380c6439e273c37e7be9a"
+    },
+    {
+      "path": "skill-package/skills/commerce-home-lifestyle/SKILL.md",
+      "purpose": "category auxiliary definition",
+      "media_type": "text/markdown",
+      "byte_size": 2117,
+      "content_hash": "6a48129b201acd4caeac69ba9ab310669b877d14f84e39b349c94f0eea8a2c3c"
+    },
+    {
+      "path": "skill-package/skills/commerce-pet-supplies/SKILL.md",
+      "purpose": "category auxiliary definition",
+      "media_type": "text/markdown",
+      "byte_size": 2124,
+      "content_hash": "16f78138ed77a72ceb44f4f21c15dd00f65c38552fc3dfa0d954c8c4bd79d6b9"
+    },
+    {
+      "path": "skill-package/skills/commerce-sports-outdoor/SKILL.md",
+      "purpose": "category auxiliary definition",
+      "media_type": "text/markdown",
+      "byte_size": 2105,
+      "content_hash": "b0df42a9f24405ec85ed9cdfc5008e14425a7c98e808ab0a3b996ea14b1a67cf"
+    },
+    {
+      "path": "skill-package/skills/commerce-digital-accessories/SKILL.md",
+      "purpose": "category auxiliary definition",
+      "media_type": "text/markdown",
+      "byte_size": 2198,
+      "content_hash": "f4a9f7499a5112299e27a6bde9a06ed9b64dd4ac900c185233025e8e37d1cdb0"
+    },
+    {
+      "path": "skill-package/evals/commerce-white-background.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 3076,
+      "content_hash": "0238ba3c9bb47ca4645c7ea08bbd42735dd98132ba3cd1f63dc96a99c3622472"
+    }
+  ],
+  "eval_datasets": ["skill-package/evals/commerce-white-background.jsonl"],
+  "assets": [],
+  "source_provenance": {
+    "type": "legacy_owned",
+    "summary_digest": "997b3b553b9bce3d20ba25dbb22c4c33003b435263c6537b49fa69118bca75d6"
+  },
+  "license_summary": [
+    {
+      "path": "skill-package/skills/commerce-white-background/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/commerce-white-background/presets/clean-studio.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/commerce-white-background/presets/soft-shadow.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/commerce-white-background/presets/elevated-display.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/commerce-white-background/references/quality-check.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/commerce-visual-guidance/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/commerce-human-photography/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/commerce-fashion/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/commerce-beauty/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/commerce-food-beverage/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/commerce-home-lifestyle/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/commerce-pet-supplies/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/commerce-sports-outdoor/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/commerce-digital-accessories/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/evals/commerce-white-background.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    }
+  ]
+}

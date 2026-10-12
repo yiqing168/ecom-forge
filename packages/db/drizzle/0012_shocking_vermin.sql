@@ -1,0 +1,1 @@
+ALTER TABLE "run_quotes" ADD COLUMN "items_snapshot" jsonb DEFAULT '[]'::jsonb NOT NULL;

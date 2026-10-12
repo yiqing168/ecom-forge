@@ -1,0 +1,429 @@
+{
+  "schema_version": 1,
+  "package_id": "social-art-creative",
+  "package_version": "1.0.0",
+  "min_runtime_version": "1.0.0",
+  "skills": [
+    {
+      "skill_id": "photo-doodle-world@1.0.0",
+      "definition_path": "skill-package/skills/photo-doodle-world/SKILL.md",
+      "definition_hash": "4232a43578a70af7677d47e04fc7ad32a47e6720adb22738df7c7ba939bab6ba"
+    },
+    {
+      "skill_id": "yarn-miniature-scene@1.0.0",
+      "definition_path": "skill-package/skills/yarn-miniature-scene/SKILL.md",
+      "definition_hash": "e0a44b98f7f121955926c052c0de16989fc6d109506842c9d9f42ad52e90ab87"
+    },
+    {
+      "skill_id": "bold-stroke-poster@1.0.0",
+      "definition_path": "skill-package/skills/bold-stroke-poster/SKILL.md",
+      "definition_hash": "f9a79964db4015dfc3427ba5493ecb84f6b0b459b6b60a964da661f2b067cb97"
+    },
+    {
+      "skill_id": "blue-white-porcelain-poster@1.0.0",
+      "definition_path": "skill-package/skills/blue-white-porcelain-poster/SKILL.md",
+      "definition_hash": "896198ff84645b3da05113bb48626f01ed7beb1c17f8f83fbc49b3337fdc75db"
+    },
+    {
+      "skill_id": "dunhuang-mural-poster@1.0.0",
+      "definition_path": "skill-package/skills/dunhuang-mural-poster/SKILL.md",
+      "definition_hash": "2d664d7f28783b15947ad35b1a5fb205e17340b072d76c3e2e1320f4c3fe7abb"
+    },
+    {
+      "skill_id": "silk-embroidery-poster@1.0.0",
+      "definition_path": "skill-package/skills/silk-embroidery-poster/SKILL.md",
+      "definition_hash": "c950f213e90658c80742639e3e8734e001921f8fdef773e1880539e97a177c13"
+    }
+  ],
+  "skill_profiles": {
+    "photo-doodle-world@1.0.0": {
+      "slug": "photo-doodle-world",
+      "version": "1.0.0",
+      "display_name": "现实涂鸦",
+      "kind": "primary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 89,
+      "required_inputs": ["semantic-reference"],
+      "required_facts": [],
+      "required_capabilities": ["image.edit"],
+      "default_output_count": 1,
+      "execution_policy": {
+        "version": 1,
+        "family": "independent_sources",
+        "max_sources": 9
+      },
+      "attachment_roles": [
+        {
+          "role": "semantic_reference",
+          "label": "源照片"
+        }
+      ],
+      "catalog_enabled": true,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [],
+      "dependencies": [
+        {
+          "skill_id": "creative-image-prompting@1.1.0",
+          "mode": "optional",
+          "reason": "需要梳理复杂图像指令、准确文字或局部续改时使用；不覆盖主 Skill 的材料和构图方法。"
+        }
+      ],
+      "references": []
+    },
+    "yarn-miniature-scene@1.0.0": {
+      "slug": "yarn-miniature-scene",
+      "version": "1.0.0",
+      "display_name": "绒线微景",
+      "kind": "primary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 91,
+      "required_inputs": ["semantic-reference"],
+      "required_facts": [],
+      "required_capabilities": ["image.edit"],
+      "default_output_count": 1,
+      "execution_policy": {
+        "version": 1,
+        "family": "independent_sources",
+        "max_sources": 9
+      },
+      "attachment_roles": [
+        {
+          "role": "semantic_reference",
+          "label": "源照片"
+        }
+      ],
+      "catalog_enabled": true,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [],
+      "dependencies": [
+        {
+          "skill_id": "creative-image-prompting@1.1.0",
+          "mode": "optional",
+          "reason": "需要梳理复杂图像指令、准确文字或局部续改时使用；不覆盖主 Skill 的材料和构图方法。"
+        }
+      ],
+      "references": []
+    },
+    "bold-stroke-poster@1.0.0": {
+      "slug": "bold-stroke-poster",
+      "version": "1.0.0",
+      "display_name": "粗笔艺术海报",
+      "kind": "primary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 92,
+      "required_inputs": ["semantic-reference"],
+      "required_facts": [],
+      "required_capabilities": ["image.edit"],
+      "default_output_count": 1,
+      "execution_policy": {
+        "version": 1,
+        "family": "independent_sources",
+        "max_sources": 9
+      },
+      "attachment_roles": [
+        {
+          "role": "semantic_reference",
+          "label": "源照片"
+        }
+      ],
+      "catalog_enabled": true,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [],
+      "dependencies": [
+        {
+          "skill_id": "creative-image-prompting@1.1.0",
+          "mode": "optional",
+          "reason": "需要梳理复杂图像指令、准确文字或局部续改时使用；不覆盖主 Skill 的材料和构图方法。"
+        }
+      ],
+      "references": []
+    },
+    "blue-white-porcelain-poster@1.0.0": {
+      "slug": "blue-white-porcelain-poster",
+      "version": "1.0.0",
+      "display_name": "青花瓷绘",
+      "kind": "primary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 93,
+      "required_inputs": ["semantic-reference"],
+      "required_facts": [],
+      "required_capabilities": ["image.edit"],
+      "default_output_count": 1,
+      "execution_policy": {
+        "version": 1,
+        "family": "independent_sources",
+        "max_sources": 9
+      },
+      "attachment_roles": [
+        {
+          "role": "semantic_reference",
+          "label": "源照片"
+        }
+      ],
+      "catalog_enabled": true,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [],
+      "dependencies": [
+        {
+          "skill_id": "creative-image-prompting@1.1.0",
+          "mode": "optional",
+          "reason": "需要梳理复杂图像指令或局部续改时使用；不覆盖主 Skill 的双联版式、青花工艺和无文字要求。"
+        }
+      ],
+      "references": []
+    },
+    "dunhuang-mural-poster@1.0.0": {
+      "slug": "dunhuang-mural-poster",
+      "version": "1.0.0",
+      "display_name": "敦煌壁画",
+      "kind": "primary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 94,
+      "required_inputs": ["semantic-reference"],
+      "required_facts": [],
+      "required_capabilities": ["image.edit"],
+      "default_output_count": 1,
+      "execution_policy": {
+        "version": 1,
+        "family": "independent_sources",
+        "max_sources": 9
+      },
+      "attachment_roles": [
+        {
+          "role": "semantic_reference",
+          "label": "源照片"
+        }
+      ],
+      "catalog_enabled": true,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [],
+      "dependencies": [
+        {
+          "skill_id": "creative-image-prompting@1.1.0",
+          "mode": "optional",
+          "reason": "需要梳理复杂图像指令或局部续改时使用；不覆盖主 Skill 的双联版式、壁画工艺和无文字要求。"
+        }
+      ],
+      "references": []
+    },
+    "silk-embroidery-poster@1.0.0": {
+      "slug": "silk-embroidery-poster",
+      "version": "1.0.0",
+      "display_name": "刺绣锦缎",
+      "kind": "primary",
+      "category": "creative",
+      "domain": "creative",
+      "stage": "1A",
+      "sort_order": 95,
+      "required_inputs": ["semantic-reference"],
+      "required_facts": [],
+      "required_capabilities": ["image.edit"],
+      "default_output_count": 1,
+      "execution_policy": {
+        "version": 1,
+        "family": "independent_sources",
+        "max_sources": 9
+      },
+      "attachment_roles": [
+        {
+          "role": "semantic_reference",
+          "label": "源照片"
+        }
+      ],
+      "catalog_enabled": true,
+      "catalog": {
+        "visibility": "public"
+      },
+      "preset_slots": [],
+      "dependencies": [
+        {
+          "skill_id": "creative-image-prompting@1.1.0",
+          "mode": "optional",
+          "reason": "需要梳理复杂图像指令或局部续改时使用；不覆盖主 Skill 的双联版式、刺绣工艺和无文字要求。"
+        }
+      ],
+      "references": []
+    }
+  },
+  "resources": [
+    {
+      "path": "skill-package/evals/bold-stroke-poster.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 8281,
+      "content_hash": "b65a77eb344fd03a6ec8acd80ee8e591869a13a8ed783fb8a38bc57e30e2fdd7"
+    },
+    {
+      "path": "skill-package/evals/blue-white-porcelain-poster.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 7957,
+      "content_hash": "657a50a3a7e79a9ae6fbdce09c7b2a116ddc1b328cc68a868dbd97776ddd1cf8"
+    },
+    {
+      "path": "skill-package/evals/dunhuang-mural-poster.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 7884,
+      "content_hash": "90f4cfd9b6463dc319d741bae4420e6ccc722172ca9f0ee4f9003ed171692165"
+    },
+    {
+      "path": "skill-package/evals/silk-embroidery-poster.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 7849,
+      "content_hash": "eb68e70c1ee540769059f69e5ea1a36adc11339247ff144e5f3cc56b4cb4b1dd"
+    },
+    {
+      "path": "skill-package/evals/photo-doodle-world.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 8432,
+      "content_hash": "dfa2bcf530a14c91b96f916ac8fde7cb5553ef2017e16c242c3c96d05a5a40b9"
+    },
+    {
+      "path": "skill-package/evals/yarn-miniature-scene.jsonl",
+      "purpose": "golden evaluation dataset",
+      "media_type": "application/jsonl",
+      "byte_size": 8187,
+      "content_hash": "d5da699ba2894a1ed57dff75064f6037d2e3c5e032b36a97be92ae5206a3e6f1"
+    },
+    {
+      "path": "skill-package/skills/bold-stroke-poster/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 5891,
+      "content_hash": "f9a79964db4015dfc3427ba5493ecb84f6b0b459b6b60a964da661f2b067cb97"
+    },
+    {
+      "path": "skill-package/skills/blue-white-porcelain-poster/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 5352,
+      "content_hash": "896198ff84645b3da05113bb48626f01ed7beb1c17f8f83fbc49b3337fdc75db"
+    },
+    {
+      "path": "skill-package/skills/dunhuang-mural-poster/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 5648,
+      "content_hash": "2d664d7f28783b15947ad35b1a5fb205e17340b072d76c3e2e1320f4c3fe7abb"
+    },
+    {
+      "path": "skill-package/skills/silk-embroidery-poster/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 5660,
+      "content_hash": "c950f213e90658c80742639e3e8734e001921f8fdef773e1880539e97a177c13"
+    },
+    {
+      "path": "skill-package/skills/photo-doodle-world/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 6105,
+      "content_hash": "4232a43578a70af7677d47e04fc7ad32a47e6720adb22738df7c7ba939bab6ba"
+    },
+    {
+      "path": "skill-package/skills/yarn-miniature-scene/SKILL.md",
+      "purpose": "primary skill definition",
+      "media_type": "text/markdown",
+      "byte_size": 6547,
+      "content_hash": "e0a44b98f7f121955926c052c0de16989fc6d109506842c9d9f42ad52e90ab87"
+    }
+  ],
+  "eval_datasets": [
+    "skill-package/evals/photo-doodle-world.jsonl",
+    "skill-package/evals/yarn-miniature-scene.jsonl",
+    "skill-package/evals/bold-stroke-poster.jsonl",
+    "skill-package/evals/blue-white-porcelain-poster.jsonl",
+    "skill-package/evals/dunhuang-mural-poster.jsonl",
+    "skill-package/evals/silk-embroidery-poster.jsonl"
+  ],
+  "assets": [],
+  "source_provenance": {
+    "type": "first_party",
+    "summary_digest": "ef1205b0d0ca96b036a634b7f50dae36b10fea008d1a57c225b7ec5a3600c00b"
+  },
+  "license_summary": [
+    {
+      "path": "skill-package/evals/bold-stroke-poster.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/evals/blue-white-porcelain-poster.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/evals/dunhuang-mural-poster.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/evals/silk-embroidery-poster.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/evals/photo-doodle-world.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/evals/yarn-miniature-scene.jsonl",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/bold-stroke-poster/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/blue-white-porcelain-poster/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/dunhuang-mural-poster/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/silk-embroidery-poster/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/photo-doodle-world/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    },
+    {
+      "path": "skill-package/skills/yarn-miniature-scene/SKILL.md",
+      "license": "MIT",
+      "rights_holder": "ecom-forge"
+    }
+  ]
+}

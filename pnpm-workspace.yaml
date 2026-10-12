@@ -1,0 +1,9 @@
+packages:
+  - 'apps/*'
+  - 'packages/*'
+allowBuilds:
+  argon2: true
+  esbuild: true
+  msgpackr-extract: false
+  # Impeccable source scans do not need Puppeteer's browser download.
+  puppeteer: false

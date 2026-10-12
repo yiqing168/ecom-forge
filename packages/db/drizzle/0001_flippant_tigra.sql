@@ -1,0 +1,2 @@
+DROP INDEX "asset_folders_user_parent_name_unique";--> statement-breakpoint
+ALTER TABLE "asset_folders" ADD CONSTRAINT "asset_folders_user_parent_name_unique" UNIQUE NULLS NOT DISTINCT("user_id","parent_folder_id","name");

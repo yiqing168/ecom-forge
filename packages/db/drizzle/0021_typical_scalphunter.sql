@@ -1,0 +1,1 @@
+ALTER TABLE "users" ADD COLUMN "risk_revision" integer DEFAULT 1 NOT NULL;

@@ -1,0 +1,1 @@
+ALTER TYPE "public"."user_activity_type" ADD VALUE 'asset_delete' BEFORE 'export';

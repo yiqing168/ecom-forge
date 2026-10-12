@@ -1,0 +1,119 @@
+@layer theme, base, antd, components, utilities;
+@import 'tailwindcss';
+
+:root {
+  color-scheme: light;
+  --background: #f4f5f3;
+  --surface: #ffffff;
+  --surface-muted: #f0f1ee;
+  --surface-strong: #e5e7e2;
+  --foreground: #171a18;
+  --muted-foreground: #626963;
+  --muted: #8a918b;
+  --border: #dfe2dc;
+  --border-strong: #cdd2ca;
+  --primary: #3159d8;
+  --primary-hover: #2748b7;
+  --primary-soft: #e8edff;
+  --focus: #3159d8;
+  --focus-soft: rgb(49 89 216 / 12%);
+  --positive: #197047;
+  --positive-soft: #e6f5ed;
+  --warning: #98601d;
+  --warning-soft: #fff2dc;
+  --danger: #b5423b;
+  --danger-hover: #98362f;
+  --danger-soft: #fdecea;
+  --info: #08746f;
+  --info-soft: #e4f4f2;
+  --navigation: #202522;
+  --navigation-muted: #aeb7b0;
+  --navigation-hover: #303732;
+  --shadow-sm: 0 1px 2px rgb(21 28 23 / 5%), 0 6px 20px rgb(21 28 23 / 4%);
+}
+
+* {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+
+html {
+  min-width: 320px;
+  background: var(--background);
+  scrollbar-gutter: stable;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--primary-soft);
+}
+
+.admin-navigation-scroll {
+  scrollbar-color: rgb(174 183 176 / 45%) transparent;
+  scrollbar-width: thin;
+}
+
+.admin-navigation-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.admin-navigation-scroll::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: rgb(174 183 176 / 38%);
+}
+
+.sr-only-focusable {
+  position: fixed;
+  left: 12px;
+  top: -80px;
+  z-index: 100;
+  border-radius: 6px;
+  background: var(--foreground);
+  padding: 10px 14px;
+  color: white;
+  transition: top 160ms ease;
+}
+
+.sr-only-focusable:focus {
+  top: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

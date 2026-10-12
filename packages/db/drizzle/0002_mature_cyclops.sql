@@ -1,0 +1,2 @@
+DROP INDEX "run_quotes_active_input_unique";--> statement-breakpoint
+CREATE UNIQUE INDEX "run_quotes_active_input_unique" ON "run_quotes" USING btree ("user_id","source","input_signature") WHERE "run_quotes"."status" = 'quoted';

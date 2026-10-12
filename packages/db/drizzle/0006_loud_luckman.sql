@@ -1,0 +1,1 @@
+ALTER TABLE "artifacts" ADD CONSTRAINT "artifacts_chat_producer_session_required" CHECK (("artifacts"."producer_mode" = 'chat') = ("artifacts"."producer_session_id" is not null));

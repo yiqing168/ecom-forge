@@ -1,0 +1,2 @@
+ALTER TABLE "queue_dispatch_intents" ADD COLUMN "revision" integer DEFAULT 1 NOT NULL;--> statement-breakpoint
+ALTER TABLE "queue_dispatch_intents" ADD CONSTRAINT "queue_dispatch_intents_revision_positive" CHECK ("queue_dispatch_intents"."revision" > 0);

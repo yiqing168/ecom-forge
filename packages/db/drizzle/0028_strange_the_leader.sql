@@ -1,0 +1,1 @@
+CREATE INDEX "agent_trace_steps_model_created_idx" ON "agent_trace_steps" USING btree ("model_snapshot_id","created_at");

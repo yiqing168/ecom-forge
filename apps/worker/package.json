@@ -1,0 +1,42 @@
+{
+  "name": "@ecom-forge/worker",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:watch": "node scripts/dev.mjs --watch",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/main.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --config vitest.config.ts --passWithNoTests",
+    "test:integration": "node ../../scripts/integration/run-worker-integration.mjs",
+    "test:worker": "pnpm test && pnpm test:integration",
+    "ops:queue-reconcile": "node dist/ops/reconcile-queue.js",
+    "poc:agent-brain": "tsx src/ops/poc-agent-brain.ts",
+    "poc:provider:image": "node --env-file-if-exists=../../.env.local --import tsx src/ops/poc-media-provider.ts image",
+    "poc:provider:edit": "node --env-file-if-exists=../../.env.local --import tsx src/ops/poc-media-provider.ts edit",
+    "poc:provider:moderation": "node --env-file-if-exists=../../.env.local --import tsx src/ops/poc-media-provider.ts moderation",
+    "validate:worker-recovery": "node ../../scripts/validation/run-vitest-case.mjs worker-recovery",
+    "validate:webhook-lost": "node ../../scripts/validation/run-vitest-case.mjs webhook-lost",
+    "validate:provider-timeout": "node ../../scripts/validation/run-vitest-case.mjs provider-timeout"
+  },
+  "dependencies": {
+    "@ecom-forge/agent": "workspace:*",
+    "@ecom-forge/compiler": "workspace:*",
+    "@ecom-forge/credit": "workspace:*",
+    "@ecom-forge/db": "workspace:*",
+    "@ecom-forge/provider": "workspace:*",
+    "@ecom-forge/queue": "workspace:*",
+    "@ecom-forge/shared": "workspace:*",
+    "@ecom-forge/skills": "workspace:*",
+    "@ecom-forge/storage": "workspace:*",
+    "@ecom-forge/types": "workspace:*",
+    "bullmq": "5.81.3",
+    "ioredis": "5.11.1",
+    "sharp": "0.35.3",
+    "zod": "4.4.3"
+  }
+}

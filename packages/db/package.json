@@ -1,0 +1,38 @@
+{
+  "name": "@ecom-forge/db",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "development": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "dev": "tsc -p tsconfig.build.json --watch",
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit",
+    "test": "node ../../scripts/integration/run-db-tests.mjs",
+    "test:integration": "node ../../scripts/integration/run-db-tests.mjs",
+    "test:worker": "node ../../scripts/integration/run-db-tests.mjs",
+    "db:check": "tsx src/check-cli.ts",
+    "predb:generate": "pnpm --filter @ecom-forge/types build",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx src/migrate.ts",
+    "predb:status": "pnpm --filter @ecom-forge/types build",
+    "db:status": "drizzle-kit check"
+  },
+  "dependencies": {
+    "@ecom-forge/shared": "workspace:*",
+    "@ecom-forge/types": "workspace:*",
+    "drizzle-orm": "0.45.2",
+    "postgres": "3.4.9"
+  },
+  "devDependencies": {
+    "drizzle-kit": "0.31.10"
+  }
+}

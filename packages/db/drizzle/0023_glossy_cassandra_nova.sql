@@ -1,0 +1,2 @@
+ALTER TABLE "workflow_runs" ADD COLUMN "revision" integer DEFAULT 1 NOT NULL;--> statement-breakpoint
+ALTER TABLE "workflow_runs" ADD CONSTRAINT "workflow_runs_revision_positive" CHECK ("workflow_runs"."revision" > 0);

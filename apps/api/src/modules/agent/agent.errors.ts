@@ -1,0 +1,35 @@
+export type AgentErrorCode =
+  | 'AGENT_CONFIRMATION_EXPIRED'
+  | 'AGENT_CONFIRMATION_NOT_AVAILABLE'
+  | 'AGENT_CONTEXT_UNAVAILABLE'
+  | 'AGENT_MODEL_UNAVAILABLE'
+  | 'FORBIDDEN'
+  | 'CREDIT_BALANCE_EMPTY'
+  | 'IDEMPOTENCY_CONFLICT'
+  | 'GENERATION_PREFERENCES_INVALID'
+  | 'MODEL_CATALOG_STALE'
+  | 'MODEL_SELECTION_INVALID'
+  | 'MODEL_SELECTION_REQUIRED'
+  | 'RESOURCE_NOT_FOUND'
+  | 'REFERENCE_NOT_AVAILABLE'
+  | 'SESSION_ACTIVE'
+  | 'SESSION_CURSOR_INVALID'
+  | 'SESSION_SKILL_MISMATCH'
+  | 'SESSION_CREATIVE_DIRECTION_MISMATCH'
+  | 'SESSION_REVISION_CONFLICT'
+  | 'SKILL_SELECTION_INVALID'
+  | 'SKILL_SELECTION_REQUIRED'
+  | 'SKILL_VERSION_DRIFT'
+  | 'TURN_ALREADY_SUBMITTED'
+  | 'TURN_STATE_INVALID';
+
+export class AgentApiError extends Error {
+  constructor(readonly code: AgentErrorCode) {
+    super(code);
+    this.name = 'AgentApiError';
+  }
+}
+
+export function agentError(code: AgentErrorCode): never {
+  throw new AgentApiError(code);
+}

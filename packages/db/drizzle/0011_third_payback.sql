@@ -1,0 +1,2 @@
+ALTER TABLE "credit_ledger" ADD COLUMN "account_version" integer;--> statement-breakpoint
+CREATE UNIQUE INDEX "credit_ledger_user_account_version_unique" ON "credit_ledger" USING btree ("user_id","account_version") WHERE "credit_ledger"."account_version" is not null;

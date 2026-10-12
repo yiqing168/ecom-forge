@@ -1,0 +1,299 @@
+[
+  {
+    "skillSlug": "minimal-scene-collage",
+    "name": "极简拼贴",
+    "description": "真实风景与极简版画的上下对照，保留场景关系，压缩视觉元素。",
+    "prompt": "请将我上传的照片制作成极简拼贴海报，保留核心主体与空间关系。",
+    "skillPath": "packages/skills/content/creative-first-release-v1/skill-package/skills/minimal-scene-collage/SKILL.md",
+    "images": [
+      {
+        "id": "minimal-scene-collage-1",
+        "title": "湖畔花开",
+        "alt": "黄花与碧蓝湖水的摄影和极简版画上下对照",
+        "src": "/showcase/minimal-scene-collage-01.webp",
+        "width": 1088,
+        "height": 1445,
+        "skillVersion": "4.3.1"
+      },
+      {
+        "id": "minimal-scene-collage-2",
+        "title": "草原倒影",
+        "alt": "草原上单马与倒影的摄影和极简转译上下对照",
+        "src": "/showcase/minimal-scene-collage-02.webp",
+        "width": 1088,
+        "height": 1445,
+        "skillVersion": "4.3.1"
+      },
+      {
+        "id": "minimal-scene-collage-3",
+        "title": "绿色山脊",
+        "alt": "起伏山脊与牧野的摄影和粗笔版画上下对照",
+        "src": "/showcase/minimal-scene-collage-03.webp",
+        "width": 1088,
+        "height": 1445,
+        "skillVersion": "4.3.1"
+      }
+    ]
+  },
+  {
+    "skillSlug": "void-line-poster",
+    "name": "虚空线稿",
+    "description": "照片与实验版画并置，用疏密、线场和空间关系形成叙事。",
+    "prompt": "请将我上传的照片制作成虚空线稿海报，用线场与留白表达照片的空间关系。",
+    "skillPath": "packages/skills/content/creative-first-release-v1/skill-package/skills/void-line-poster/SKILL.md",
+    "images": [
+      {
+        "id": "void-line-poster-1",
+        "title": "城市回声",
+        "alt": "山城港湾的摄影和实验线场版画上下对照",
+        "src": "/showcase/void-line-poster-01.webp",
+        "width": 1200,
+        "height": 1600,
+        "skillVersion": "1.2.0"
+      },
+      {
+        "id": "void-line-poster-2",
+        "title": "云岭之上",
+        "alt": "云雾山岭的摄影与线场山峰版画上下对照",
+        "src": "/showcase/void-line-poster-02.webp",
+        "width": 1200,
+        "height": 1600,
+        "skillVersion": "1.2.0"
+      },
+      {
+        "id": "void-line-poster-3",
+        "title": "江上行舟",
+        "alt": "峡江行船的摄影和船只轨迹版画上下对照",
+        "src": "/showcase/void-line-poster-03.webp",
+        "width": 1200,
+        "height": 1600,
+        "skillVersion": "1.2.0"
+      }
+    ]
+  },
+  {
+    "skillSlug": "creative-scene-collage",
+    "name": "实景拼贴",
+    "description": "将实景照片的色彩与形状转成撕纸、印刷和拼贴材料语言。",
+    "prompt": "请根据我上传的照片制作实景拼贴，用纸张质感和色块重塑场景。",
+    "skillPath": "packages/skills/content/creative-first-release-v1/skill-package/skills/creative-scene-collage/SKILL.md",
+    "images": [
+      {
+        "id": "creative-scene-collage-1",
+        "title": "云海晨光",
+        "alt": "山间云海和晨光的撕纸摄影拼贴",
+        "src": "/showcase/creative-scene-collage-01.webp",
+        "width": 1088,
+        "height": 1445,
+        "skillVersion": "1.4.2"
+      },
+      {
+        "id": "creative-scene-collage-2",
+        "title": "初雪天光",
+        "alt": "雪山与晚霞的纸面摄影拼贴",
+        "src": "/showcase/creative-scene-collage-02.webp",
+        "width": 1088,
+        "height": 1445,
+        "skillVersion": "1.4.2"
+      },
+      {
+        "id": "creative-scene-collage-3",
+        "title": "山间小屋",
+        "alt": "山间小屋与雪山的纸张拼贴海报",
+        "src": "/showcase/creative-scene-collage-03.webp",
+        "width": 1088,
+        "height": 1445,
+        "skillVersion": "1.4.2"
+      }
+    ]
+  },
+  {
+    "skillSlug": "dunhuang-mural-poster",
+    "name": "敦煌壁画",
+    "description": "上方保留真实风景，下方以矿物色、简化轮廓和壁画肌理转译。",
+    "prompt": "请将我上传的照片制作成敦煌壁画风格的上下对照海报。",
+    "skillPath": "packages/skills/content/social-art-creative-v1/skill-package/skills/dunhuang-mural-poster/SKILL.md",
+    "images": [
+      {
+        "id": "dunhuang-mural-poster-1",
+        "title": "峡江入画",
+        "alt": "峡江摄影与赭石矿物色壁画的上下对照",
+        "src": "/showcase/dunhuang-mural-poster-01.webp",
+        "width": 1086,
+        "height": 1448,
+        "skillVersion": "1.0.0"
+      }
+    ]
+  },
+  {
+    "skillSlug": "second-world-photo-remix",
+    "name": "实景延伸线稿",
+    "description": "保留摄影主体，从照片边界延伸出克制而有叙事感的线稿。",
+    "prompt": "请将我上传的照片制作成实景延伸线稿，保留上方摄影，下方延伸出简洁线稿叙事。",
+    "skillPath": "packages/skills/content/creative-first-release-v1/skill-package/skills/second-world-photo-remix/SKILL.md",
+    "images": [
+      {
+        "id": "second-world-photo-remix-1",
+        "title": "日落余音",
+        "alt": "海面日落与下方延伸倒影线稿",
+        "src": "/showcase/second-world-photo-remix-01.webp",
+        "width": 1200,
+        "height": 1600,
+        "skillVersion": "1.0.4"
+      },
+      {
+        "id": "second-world-photo-remix-2",
+        "title": "花开向海",
+        "alt": "海边花丛与下方延伸花朵线稿",
+        "src": "/showcase/second-world-photo-remix-02.webp",
+        "width": 1200,
+        "height": 1600,
+        "skillVersion": "1.0.4"
+      },
+      {
+        "id": "second-world-photo-remix-3",
+        "title": "街角花影",
+        "alt": "街角车辆与花树的摄影和轮廓线稿对照",
+        "src": "/showcase/second-world-photo-remix-03.webp",
+        "width": 1086,
+        "height": 1448,
+        "skillVersion": "1.0.4"
+      }
+    ]
+  },
+  {
+    "skillSlug": "daily-memory-page",
+    "name": "实景转译·日常记忆页",
+    "description": "将日常场景转成安静、具有纸面与绘画质感的记忆页面。",
+    "prompt": "请将我上传的照片转译成日常记忆页，保留场景主题与自然光色。",
+    "skillPath": "packages/skills/content/creative-first-release-v1/skill-package/skills/daily-memory-page/SKILL.md",
+    "images": [
+      {
+        "id": "daily-memory-page-1",
+        "title": "海鸟掠过",
+        "alt": "海鸟与远山海面的轻盈绘画转译",
+        "src": "/showcase/daily-memory-page-01.webp",
+        "width": 1088,
+        "height": 1445,
+        "skillVersion": "1.1.0"
+      },
+      {
+        "id": "daily-memory-page-2",
+        "title": "港口午后",
+        "alt": "远处货船与红色浮标的海面绘画转译",
+        "src": "/showcase/daily-memory-page-02.webp",
+        "width": 1088,
+        "height": 1445,
+        "skillVersion": "1.1.0"
+      }
+    ]
+  },
+  {
+    "skillSlug": "watercolor-scene-collage",
+    "name": "实景拼贴-水彩",
+    "description": "原场景与水彩速写上下对照，用透明色层和纸面留白提炼主题。",
+    "prompt": "请将我上传的照片制作成实景拼贴水彩海报，保留核心主体与姿态关系。",
+    "skillPath": "packages/skills/content/creative-first-release-v1/skill-package/skills/watercolor-scene-collage/SKILL.md",
+    "images": [
+      {
+        "id": "watercolor-scene-collage-1",
+        "title": "落日同行",
+        "alt": "落日中两个人物背影与下方水彩速写对照",
+        "src": "/showcase/watercolor-scene-collage-01.webp",
+        "width": 1088,
+        "height": 1445,
+        "skillVersion": "1.0.1"
+      }
+    ]
+  },
+  {
+    "skillSlug": "creative-scene-reimagining",
+    "name": "照片意象重绘",
+    "description": "从照片的可观察关系重新组织构图与材质，形成独立视觉表达。",
+    "prompt": "请根据我上传的照片进行意象重绘，保留可识别的场景主题，重新组织视觉表达。",
+    "skillPath": "packages/skills/content/creative-first-release-v1/skill-package/skills/creative-scene-reimagining/SKILL.md",
+    "images": [
+      {
+        "id": "creative-scene-reimagining-1",
+        "title": "雪岭意象",
+        "alt": "雪山与绿色坡地的纸面抽象重绘",
+        "src": "/showcase/creative-scene-reimagining-01.webp",
+        "width": 1088,
+        "height": 1445,
+        "skillVersion": "1.3.1"
+      }
+    ]
+  },
+  {
+    "skillSlug": "silk-embroidery-poster",
+    "name": "刺绣锦缎",
+    "description": "原场景与刺绣转译上下对照，以线材、针脚方向和缎面表现层次。",
+    "prompt": "请将我上传的照片制作成刺绣锦缎风格的上下对照海报。",
+    "skillPath": "packages/skills/content/social-art-creative-v1/skill-package/skills/silk-embroidery-poster/SKILL.md",
+    "images": [
+      {
+        "id": "silk-embroidery-poster-1",
+        "title": "丝线山城",
+        "alt": "山城摄影与锦缎刺绣转译的上下对照",
+        "src": "/showcase/silk-embroidery-poster-01.webp",
+        "width": 1086,
+        "height": 1448,
+        "skillVersion": "1.0.0"
+      }
+    ]
+  },
+  {
+    "skillSlug": "yarn-miniature-scene",
+    "name": "绒线微景",
+    "description": "将场景转成可感知线材与针织结构的柔软微缩世界。",
+    "prompt": "请将我上传的照片转译成绒线微景，保留主体关系与场景识别。",
+    "skillPath": "packages/skills/content/social-art-creative-v1/skill-package/skills/yarn-miniature-scene/SKILL.md",
+    "images": [
+      {
+        "id": "yarn-miniature-scene-1",
+        "title": "雪山绒线记忆",
+        "alt": "雪山中四个针织人物的绒线微缩场景",
+        "src": "/showcase/yarn-miniature-scene-01.webp",
+        "width": 1440,
+        "height": 1080,
+        "skillVersion": "1.0.0"
+      }
+    ]
+  },
+  {
+    "skillSlug": "social-contrast-poster",
+    "name": "日常反差海报",
+    "description": "从日常照片中提炼反差主题，以明确层级和克制文字形成海报。",
+    "prompt": "请根据我上传的照片制作日常反差海报，突出一个清晰的视觉主题。",
+    "skillPath": "packages/skills/content/creative-first-release-v1/skill-package/skills/social-contrast-poster/SKILL.md",
+    "images": [
+      {
+        "id": "social-contrast-poster-1",
+        "title": "海面一直在航行",
+        "alt": "海鸟、船只与蓝色天空构成的中文主题海报",
+        "src": "/showcase/social-contrast-poster-01.webp",
+        "width": 1088,
+        "height": 1445,
+        "skillVersion": "1.1.0"
+      }
+    ]
+  },
+  {
+    "skillSlug": "creative-free-generation",
+    "name": "自由创作",
+    "description": "由用户的文字和参考决定画面，不预设必须采用哪种艺术风格。",
+    "prompt": "创作一张温暖的中秋团圆插画，家人在院中赏月，保留自然互动与暖色灯光。",
+    "skillPath": "packages/skills/content/creative-first-release-v1/skill-package/skills/creative-free-generation/SKILL.md",
+    "images": [
+      {
+        "id": "creative-free-generation-1",
+        "title": "月下团圆",
+        "alt": "一家人在月色院落中赏月的暖色插画",
+        "src": "/showcase/creative-free-generation-01.webp",
+        "width": 1088,
+        "height": 1445,
+        "skillVersion": "1.0.1"
+      }
+    ]
+  }
+]

@@ -1,0 +1,65 @@
+.env
+.env.*
+!.env.example
+.next/
+.next-*/
+.turbo/
+coverage/
+dist/
+node_modules/
+playwright-report/
+test-results/
+.tmp-*/
+.playwright-cli/
+output/
+/data/
+/imgage/
+/artifacts/poc/
+/artifacts/review-logs/
+
+# Local research and review reports; existing tracked documents stay tracked.
+/docs/research/
+
+.acceptance/
+uploads/*
+!uploads/.gitkeep
+**/uploads/*
+!**/uploads/.gitkeep
+**/uploads-accept/*
+!**/uploads-accept/.gitkeep
+*.out
+*.err
+**/__pycache__/
+*.pyc
+/opencode.json
+*.log
+*.tsbuildinfo
+.DS_Store
+Thumbs.db
+nul
+.tmp/
+.qoder-tmp/
+.runtime/
+
+# impeccable-ignore-start
+# Shared config remains tracked; runtime state and local review artifacts do not.
+.impeccable/config.local.json
+.impeccable/hook.cache.json
+.impeccable/hook.pending.json
+.impeccable/*.png
+.impeccable/live/server.json
+.impeccable/live/sessions/
+.impeccable/live/previews/
+.impeccable/live/annotations/
+.impeccable/live/cache/
+.impeccable/live/manual-edit-apply-transaction.json
+.impeccable/live/manual-edit-events.jsonl
+.impeccable/live/manual-edit-evidence/
+.impeccable/live/pending-manual-edits.json
+.impeccable/live/deferred-svelte-component-accepts.json
+.impeccable/live/*.png
+# impeccable-ignore-end
+
+# Local agent workspace state (memory, intermediate artifacts). Not a runtime input.
+/.workbuddy/
+/.claude/

@@ -1,0 +1,3 @@
+ALTER TABLE "chat_sessions" ADD COLUMN "creative_direction_snapshot_json" jsonb;--> statement-breakpoint
+ALTER TABLE "chat_sessions" ADD COLUMN "creative_direction_snapshot_hash" varchar(64);--> statement-breakpoint
+ALTER TABLE "chat_sessions" ADD CONSTRAINT "chat_sessions_creative_direction_pair_valid" CHECK (("chat_sessions"."creative_direction_snapshot_json" is null and "chat_sessions"."creative_direction_snapshot_hash" is null) or ("chat_sessions"."creative_direction_snapshot_json" is not null and "chat_sessions"."creative_direction_snapshot_hash" ~ '^[a-f0-9]{64}$' and "chat_sessions"."creative_direction_snapshot_hash" is not null));
