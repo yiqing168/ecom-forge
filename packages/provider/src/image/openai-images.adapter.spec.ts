@@ -714,6 +714,67 @@ describe('OpenAI Images adapter', () => {
     expect(reset).toHaveBeenCalledTimes(1);
   });
 
+  it('records a pre-header transport failure without retrying or leaking the error message', async () => {
+    const error = new TypeError('secret prompt and signed URL', {
+      cause: Object.assign(new Error('private address'), { code: 'UND_ERR_SOCKET' }),
+    });
+    const fetchImpl = vi.fn<typeof fetch>().mockRejectedValue(error);
+    const outcome = await adapter(fetchImpl).execute(request(), snapshot(), context());
+    expect(outcome).toMatchObject({
+      kind: 'outcome_unknown',
+      error_code: 'provider_unavailable',
+      transport_diagnostic: {
+        phase: 'response_headers',
+        error_name: 'TypeError',
+        network_code: 'UND_ERR_SOCKET',
+        aborted: false,
+        deadline_exceeded: false,
+      },
+    });
+    expect(outcome).not.toHaveProperty('provider_request_id');
+    expect(JSON.stringify(outcome)).not.toMatch(/secret|private address|signed URL/);
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+  });
+
+  it('retains response-header identity when the response body is interrupted', async () => {
+    const body = new ReadableStream<Uint8Array>({
+      start(controller) {
+        controller.error(Object.assign(new Error('secret'), { code: 'ECONNRESET' }));
+      },
+    });
+    const fetchImpl = vi.fn<typeof fetch>().mockResolvedValue(
+      new Response(body, {
+        headers: { 'x-request-id': 'relay-request-123', 'content-type': 'application/json' },
+      }),
+    );
+    expect(await adapter(fetchImpl).execute(request(), snapshot(), context())).toMatchObject({
+      kind: 'outcome_unknown',
+      provider_request_id: 'relay-request-123',
+      diagnostic_code: 'response_body_invalid',
+      transport_diagnostic: {
+        phase: 'response_body',
+        network_code: 'ECONNRESET',
+        http_status: 200,
+      },
+    });
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+  });
+
+  it('diagnoses output download failures separately from the paid generation request', async () => {
+    const fetchImpl = vi
+      .fn<typeof fetch>()
+      .mockResolvedValueOnce(providerResponse([{ url: 'https://cdn.test.invalid/output.png' }]))
+      .mockRejectedValueOnce(
+        new TypeError('private URL', { cause: { code: 'UND_ERR_CONNECT_TIMEOUT' } }),
+      );
+    expect(await adapter(fetchImpl).execute(request(), snapshot(), context())).toMatchObject({
+      kind: 'outcome_unknown',
+      diagnostic_code: 'output_url_download_failed',
+      transport_diagnostic: { phase: 'output_headers', network_code: 'UND_ERR_CONNECT_TIMEOUT' },
+    });
+    expect(fetchImpl).toHaveBeenCalledTimes(2);
+  });
+
   it('rejects invalid task/model/spec bindings before any Provider dispatch', async () => {
     const fetchImpl = vi.fn<typeof fetch>();
     await expect(

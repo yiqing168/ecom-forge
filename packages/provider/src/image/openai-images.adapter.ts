@@ -25,6 +25,7 @@ import {
   relayApiResourceUrl,
 } from '../relay-policy.js';
 import { OPENAI_IMAGES_RUNTIME_DEFAULTS } from './runtime-defaults.js';
+import { imageTransportDiagnostic, type ImageTransportDiagnostic } from './transport-diagnostic.js';
 
 const modelIdPattern = /^[A-Za-z0-9][A-Za-z0-9._:/-]{0,255}$/;
 const sha256Pattern = /^[a-f0-9]{64}$/;
@@ -287,8 +288,20 @@ export class OpenAiImagesAdapter {
         ),
         init,
       );
-    } catch {
-      return unknown(context, 'provider_unavailable');
+    } catch (error) {
+      return {
+        ...unknown(
+          context,
+          Date.now() >= context.deadlineAt.getTime() ? 'provider_timeout' : 'provider_unavailable',
+        ),
+        transport_diagnostic: imageTransportDiagnostic(error, {
+          phase: 'response_headers',
+          startedAt: acceptedAt.getTime(),
+          requestStartedAt: acceptedAt.getTime(),
+          signal: context.signal,
+          deadlineAt: context.deadlineAt,
+        }),
+      };
     }
     const providerRequestId = requestId(response);
     const receipt = { status_code_family: statusFamily(response.status) } as const;
@@ -303,17 +316,28 @@ export class OpenAiImagesAdapter {
     }
 
     let rawBody: unknown;
+    const bodyStartedAt = Date.now();
     try {
       rawBody = await readBoundedJson(response, this.limits.maxResponseBytes);
-    } catch {
-      return unknown(
-        context,
-        'provider_response_invalid',
-        providerRequestId,
-        costSummary,
-        'response_body_invalid',
-        safeResponseShape(response, undefined),
-      );
+    } catch (error) {
+      return {
+        ...unknown(
+          context,
+          'provider_response_invalid',
+          providerRequestId,
+          costSummary,
+          'response_body_invalid',
+          safeResponseShape(response, undefined),
+        ),
+        transport_diagnostic: imageTransportDiagnostic(error, {
+          phase: 'response_body',
+          startedAt: bodyStartedAt,
+          requestStartedAt: acceptedAt.getTime(),
+          signal: context.signal,
+          deadlineAt: context.deadlineAt,
+          httpStatus: response.status,
+        }),
+      };
     }
     const parsedBody = responseSchema.safeParse(rawBody);
     if (!parsedBody.success) {
@@ -371,6 +395,7 @@ export class OpenAiImagesAdapter {
             this.limits.maxOutputBytes,
             expectedMediaType,
             this.allowedOutputOrigins,
+            acceptedAt.getTime(),
           );
           const inspected = inspectImage(bytes);
           if (
@@ -406,13 +431,18 @@ export class OpenAiImagesAdapter {
       };
     } catch (error) {
       const diagnosticCode = diagnosticCodeForOutputError(error);
-      return unknown(
-        context,
-        'provider_response_invalid',
-        resolvedRequestId,
-        costSummary,
-        diagnosticCode,
-      );
+      return {
+        ...unknown(
+          context,
+          'provider_response_invalid',
+          resolvedRequestId,
+          costSummary,
+          diagnosticCode,
+        ),
+        ...(error instanceof ImageOutputDownloadError
+          ? { transport_diagnostic: error.diagnostic }
+          : {}),
+      };
     }
   }
 
@@ -747,6 +777,12 @@ function requestId(response: Response): string | undefined {
 
 type ImageResponseItem = z.infer<typeof responseItemSchema>;
 
+class ImageOutputDownloadError extends Error {
+  constructor(readonly diagnostic: ImageTransportDiagnostic) {
+    super('IMAGE_OUTPUT_URL_DOWNLOAD_FAILED');
+  }
+}
+
 async function resolveOutputBytes(
   item: ImageResponseItem,
   fetchImpl: typeof fetch,
@@ -754,6 +790,7 @@ async function resolveOutputBytes(
   maxOutputBytes: number,
   expectedMediaType: ProviderImageMediaType,
   allowedOutputOrigins: readonly string[],
+  requestStartedAt: number,
 ): Promise<Uint8Array> {
   if (item.b64_json !== undefined) {
     return decodeBase64Output(item.b64_json, maxOutputBytes);
@@ -776,6 +813,19 @@ async function resolveOutputBytes(
   }
 
   let response: Response;
+  let phase: ImageTransportDiagnostic['phase'] = 'output_headers';
+  let startedAt = Date.now();
+  const downloadError = (error: unknown, httpStatus?: number) =>
+    new ImageOutputDownloadError(
+      imageTransportDiagnostic(error, {
+        phase,
+        startedAt,
+        requestStartedAt,
+        signal: context.signal,
+        deadlineAt: context.deadlineAt,
+        ...(httpStatus === undefined ? {} : { httpStatus }),
+      }),
+    );
   try {
     response = await fetchImpl(outputUrl.toString(), {
       method: 'GET',
@@ -783,27 +833,29 @@ async function resolveOutputBytes(
       signal: context.signal,
       headers: { accept: expectedMediaType },
     });
-  } catch {
-    throw new Error('IMAGE_OUTPUT_URL_DOWNLOAD_FAILED');
+  } catch (error) {
+    throw downloadError(error);
   }
   if (!response.ok) {
-    throw new Error('IMAGE_OUTPUT_URL_DOWNLOAD_FAILED');
+    throw downloadError(undefined, response.status);
   }
   const contentType = response.headers.get('content-type')?.split(';', 1)[0]?.trim();
   if (contentType !== expectedMediaType) {
     throw new Error('IMAGE_OUTPUT_URL_INVALID');
   }
   let bytes: Uint8Array;
+  phase = 'output_body';
+  startedAt = Date.now();
   try {
     bytes = await readBoundedBytes(response, maxOutputBytes);
   } catch (error) {
     // A response can be HTTP-valid and still fail while its body is streaming. Keep
     // transport interruption separate from payload validation for operational diagnosis.
     if (isInvalidBoundedResponseError(error)) throw new Error('IMAGE_OUTPUT_URL_INVALID');
-    throw new Error('IMAGE_OUTPUT_URL_DOWNLOAD_FAILED');
+    throw downloadError(error, response.status);
   }
   if (context.signal.aborted || context.deadlineAt.getTime() <= Date.now()) {
-    throw new Error('IMAGE_OUTPUT_URL_DOWNLOAD_FAILED');
+    throw downloadError(undefined, response.status);
   }
   return bytes;
 }
@@ -913,7 +965,7 @@ function unknown(
     ProviderImageExecutionOutcome,
     { kind: 'outcome_unknown' }
   >['diagnostic_details'],
-): ProviderImageExecutionOutcome {
+): Extract<ProviderImageExecutionOutcome, { kind: 'outcome_unknown' }> {
   return {
     kind: 'outcome_unknown',
     ...(providerRequestId ? { provider_request_id: providerRequestId } : {}),

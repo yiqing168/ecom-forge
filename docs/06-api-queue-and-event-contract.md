@@ -1,5 +1,9 @@
 # 06 API、队列与事件契约
 
+### 事件后的快照补全（2026-10-13）
+
+`task.status_changed` 仍只携带状态变更，重生成资格、最新 attempt 和 retry 链以鉴权快照为准。客户端收到需刷新详情的事件后合并在途读取；读取失败或快照游标落后时，以有上限的退避间隔继续补拉，不能被正常 SSE heartbeat 取消。401/403/404 停止并执行既有鉴权/不可用处理；客户端停止后不再补拉或应用结果。不得因为某次快照 GET 失败而重发生成 POST。
+
 ### Skill 目录执行元数据（2026-10-08）
 
 Skill catalog 条目可返回 `attachment_roles: [{role,label}]`，角色使用现有附件枚举，标签为中文展示；客户端只按返回值生成选项，不按 slug 维护角色表。未声明角色时不提供 Skill 专用选项，服务端仍独立校验；不增加旧目录或历史任务兼容分支。内置 manifest 的 `catalog_enabled=false` 不返回新建入口，也不删除历史数据。`execution_policy` 是服务端 selection/编译/任务快照字段，不接受用户提交或模型工具参数覆盖，不暴露为授权开关。工具参数不再含 `xieyi_structure` 等单一 Skill 的艺术证明，创作决策由通用 `creative_prompt`、`semantic_summary` 与 `creative_note` 表达。

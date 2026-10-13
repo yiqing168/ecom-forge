@@ -906,6 +906,80 @@ describe('Conversation', () => {
     await vi.waitFor(() => expect(onRetryImage).toHaveBeenCalledWith('workflow-a', 'task-1'));
   });
 
+  it('isolates an unknown slot and its retry from a still-running sibling', async () => {
+    const onRetryImage = vi.fn().mockResolvedValue(undefined);
+    const props = {
+      ...baseProps(),
+      onRetryImage,
+      snapshot: { ...snapshot(), user_status: 'thinking' as const, workflow_run_id: 'workflow-a' },
+      workflowReviewState: 'result_confirmation' as const,
+      workflowArtifacts: [workflowArtifact('task-3', 'artifact-3')],
+    };
+    const unknownTask = {
+      ...workflowTask('task-1', 'waiting_manual_review'),
+      retryable: true,
+      latest_attempt: { id: 'attempt-1', attempt_no: 1, status: 'outcome_unknown' },
+    };
+    const { rerender } = render(
+      <Conversation
+        {...props}
+        workflowTasks={[
+          unknownTask,
+          workflowTask('task-2', 'running'),
+          workflowTask('task-3', 'succeeded'),
+        ]}
+      />,
+    );
+
+    expect(screen.getAllByRole('status', { name: '图片生成中' })).toHaveLength(1);
+    expect(screen.getByText('已生成 1/3 张')).toBeTruthy();
+    expect(screen.queryByRole('button', { name: '重新生成第 2 张图片' })).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: '重新生成第 1 张图片' }));
+    await vi.waitFor(() =>
+      expect(onRetryImage).toHaveBeenCalledExactlyOnceWith('workflow-a', 'task-1'),
+    );
+
+    rerender(
+      <Conversation
+        {...props}
+        workflowTasks={[
+          {
+            ...unknownTask,
+            latest_retry: {
+              workflow_run_id: 'workflow-retry',
+              task_id: 'task-retry',
+              status: 'running',
+            },
+          },
+          { ...unknownTask, id: 'task-2' },
+          workflowTask('task-3', 'succeeded'),
+        ]}
+      />,
+    );
+    expect(screen.getAllByRole('status', { name: '图片生成中' })).toHaveLength(1);
+    expect(screen.queryByRole('button', { name: '重新生成第 1 张图片' })).toBeNull();
+    expect(screen.getByRole('button', { name: '重新生成第 2 张图片' })).toBeTruthy();
+    expect(await screen.findAllByRole('img', { name: '生成的图片' })).toHaveLength(1);
+  });
+
+  it('keeps each failed slot retryable even when another output is in content review', () => {
+    render(
+      <Conversation
+        {...baseProps()}
+        snapshot={{ ...snapshot(), user_status: 'thinking', workflow_run_id: 'workflow-a' }}
+        workflowReviewState="content_review"
+        workflowTasks={[
+          { ...workflowTask('task-1', 'failed'), retryable: true },
+          workflowTask('task-2', 'running'),
+          workflowTask('task-3', 'succeeded'),
+        ]}
+      />,
+    );
+    expect(screen.getByRole('button', { name: '重新生成第 1 张图片' })).toBeTruthy();
+    expect(screen.getAllByRole('status', { name: '图片生成中' })).toHaveLength(1);
+    expect(screen.getAllByRole('status', { name: '图片结果复核中' })).toHaveLength(1);
+  });
+
   it('keeps the independent-charge warning beside retry after unknown timeout', () => {
     render(
       <Conversation

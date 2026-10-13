@@ -100,6 +100,7 @@ describe('WorkflowRealtimeClient', () => {
     };
     const stream = streamOf(
       {
+        keepOpen: true,
         id: '2',
         event: 'task.status_changed',
         data: {
@@ -141,7 +142,11 @@ describe('WorkflowRealtimeClient', () => {
 
     try {
       await client.start();
-      await waitFor(() => expect(handlers.onSnapshot).toHaveBeenLastCalledWith(finalSnapshot));
+      await waitFor(() => expect(handlers.onEvent).toHaveBeenCalledTimes(2));
+      resolveTaskRefresh(Response.json({ ...snapshot, last_event_seq: 2 }));
+      await waitFor(() => expect(handlers.onSnapshot).toHaveBeenLastCalledWith(finalSnapshot), {
+        timeout: 2_000,
+      });
       expect(handlers.onEvent).toHaveBeenCalledTimes(2);
       expect(handlers.onStatus).toHaveBeenLastCalledWith('closed');
       resolveTaskRefresh(Response.json({ ...snapshot, last_event_seq: 2 }));
@@ -166,6 +171,152 @@ describe('WorkflowRealtimeClient', () => {
     expect(handlers.onStatus).toHaveBeenLastCalledWith('closed');
     expect(fetcher).toHaveBeenCalledTimes(1);
   });
+
+  it.each(['failure', 'stale'] as const)(
+    'retries a %s detail refresh despite healthy heartbeats',
+    async (mode) => {
+      vi.useFakeTimers();
+      const handlers = callbacks();
+      let controller!: ReadableStreamDefaultController<Uint8Array>;
+      const stream = new ReadableStream<Uint8Array>({
+        start(value) {
+          controller = value;
+        },
+      });
+      const complete = {
+        ...snapshot,
+        last_event_seq: 2,
+        tasks: [
+          {
+            ...snapshot.tasks[0]!,
+            status: 'waiting_manual_review',
+            retryable: true,
+            latest_attempt: {
+              id: '33333333-3333-4333-8333-333333333333',
+              attempt_no: 1,
+              status: 'outcome_unknown',
+            },
+          },
+        ],
+      };
+      const fetcher = vi
+        .fn<typeof fetch>()
+        .mockResolvedValueOnce(Response.json(snapshot))
+        .mockResolvedValueOnce(new Response(stream));
+      if (mode === 'failure') fetcher.mockRejectedValueOnce(new TypeError('network unavailable'));
+      else fetcher.mockResolvedValueOnce(Response.json(snapshot));
+      fetcher.mockResolvedValueOnce(Response.json(complete));
+      const client = new WorkflowRealtimeClient(runId, handlers, { fetcher });
+      try {
+        await client.start();
+        controller.enqueue(
+          new TextEncoder().encode(
+            `id: 2\nevent: task.status_changed\ndata: ${JSON.stringify({
+              schema_version: 1,
+              scope: `workflow_run:${runId}`,
+              event_seq: 2,
+              event_type: 'task.status_changed',
+              occurred_at: '2026-08-11T00:00:01.000Z',
+              payload: { task_id: taskId, from: 'queued', to: 'waiting_manual_review' },
+            })}\n\n`,
+          ),
+        );
+        await vi.advanceTimersByTimeAsync(0);
+        controller.enqueue(
+          new TextEncoder().encode(
+            `event: heartbeat\ndata: ${JSON.stringify({ scope: `workflow_run:${runId}`, last_event_seq: 2 })}\n\n`,
+          ),
+        );
+        await vi.advanceTimersByTimeAsync(1_000);
+        expect(handlers.onSnapshot).toHaveBeenLastCalledWith(complete);
+        expect(fetcher).toHaveBeenCalledTimes(4);
+        client.stop();
+        await vi.advanceTimersByTimeAsync(20_000);
+        expect(fetcher).toHaveBeenCalledTimes(4);
+      } finally {
+        client.stop();
+        controller.close();
+        vi.useRealTimers();
+      }
+    },
+  );
+
+  it.each([401, 403, 404])('stops on a post-event snapshot HTTP %s', async (status) => {
+    const handlers = callbacks();
+    const stream = streamOf({
+      id: '2',
+      event: 'task.status_changed',
+      data: {
+        schema_version: 1,
+        scope: `workflow_run:${runId}`,
+        event_seq: 2,
+        event_type: 'task.status_changed',
+        occurred_at: '2026-08-11T00:00:01.000Z',
+        payload: { task_id: taskId, from: 'queued', to: 'running' },
+      },
+    });
+    const fetcher = vi
+      .fn<typeof fetch>()
+      .mockResolvedValueOnce(Response.json(snapshot))
+      .mockResolvedValueOnce(new Response(stream))
+      .mockResolvedValueOnce(new Response(null, { status }));
+    const client = new WorkflowRealtimeClient(runId, handlers, { fetcher });
+    try {
+      await client.start();
+      await waitFor(() => expect(handlers.onStatus).toHaveBeenLastCalledWith('closed'));
+      expect(
+        status === 404 ? handlers.onUnavailable : handlers.onAuthenticationRequired,
+      ).toHaveBeenCalledTimes(1);
+      expect(fetcher).toHaveBeenCalledTimes(3);
+    } finally {
+      client.stop();
+    }
+  });
+
+  it.each([401, 403, 404])(
+    'ignores a post-event snapshot HTTP %s after the client stops',
+    async (status) => {
+      const handlers = callbacks();
+      let resolveDetails!: (response: Response) => void;
+      const details = new Promise<Response>((resolve) => {
+        resolveDetails = resolve;
+      });
+      const stream = streamOf({
+        keepOpen: true,
+        id: '2',
+        event: 'task.status_changed',
+        data: {
+          schema_version: 1,
+          scope: `workflow_run:${runId}`,
+          event_seq: 2,
+          event_type: 'task.status_changed',
+          occurred_at: '2026-08-11T00:00:01.000Z',
+          payload: { task_id: taskId, from: 'queued', to: 'running' },
+        },
+      });
+      const fetcher = vi
+        .fn<typeof fetch>()
+        .mockResolvedValueOnce(Response.json(snapshot))
+        .mockResolvedValueOnce(new Response(stream))
+        .mockReturnValueOnce(details);
+      const client = new WorkflowRealtimeClient(runId, handlers, { fetcher });
+      try {
+        await client.start();
+        await waitFor(() => expect(fetcher).toHaveBeenCalledTimes(3));
+        client.stop();
+        resolveDetails(new Response(null, { status }));
+        await new Promise((resolve) => setTimeout(resolve, 0));
+        expect(handlers.onAuthenticationRequired).not.toHaveBeenCalled();
+        expect(handlers.onUnavailable).not.toHaveBeenCalled();
+        expect(handlers.onSnapshot).toHaveBeenCalledTimes(1);
+        expect(handlers.onStatus).toHaveBeenLastCalledWith('closed');
+        expect(fetcher).toHaveBeenCalledTimes(3);
+      } finally {
+        resolveDetails(Response.json(snapshot));
+        client.stop();
+      }
+    },
+  );
 
   it('recovers from an event gap with a fresh snapshot', async () => {
     const handlers = callbacks();
@@ -288,6 +439,7 @@ describe('WorkflowRealtimeClient', () => {
 
 function streamOf(
   ...inputs: Array<{
+    keepOpen?: boolean;
     id: string;
     event: string;
     data: Record<string, unknown>;
@@ -305,7 +457,7 @@ function streamOf(
             .join(''),
         ),
       );
-      controller.close();
+      if (!inputs.some((input) => input.keepOpen)) controller.close();
     },
   });
 }

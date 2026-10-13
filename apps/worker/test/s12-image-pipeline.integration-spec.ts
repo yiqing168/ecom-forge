@@ -126,6 +126,15 @@ describe('S12 image generation pipeline integration', () => {
 
   it('keeps an ambiguous Provider dispatch waiting and never submits it again', async () => {
     if (!fixture) throw new Error('Missing S12 image fixture');
+    const diagnostic = {
+      phase: 'response_headers' as const,
+      elapsed_ms: 139_045,
+      total_elapsed_ms: 139_045,
+      aborted: false,
+      deadline_exceeded: false,
+      network_code: 'UND_ERR_SOCKET' as const,
+    };
+    const telemetry = { info: vi.fn(), error: vi.fn() };
     const dispatch = vi.fn<ImageDispatcher>(async (input) => {
       expect(await input.markPotentiallyDispatched()).toBe(true);
       return {
@@ -134,9 +143,10 @@ describe('S12 image generation pipeline integration', () => {
         error_code: 'provider_timeout',
         request_digest: canonicalSha256({ task: input.taskId }),
         unknown_at: new Date(),
+        transport_diagnostic: diagnostic,
       };
     });
-    const service = pipeline(storageRoot, dispatch);
+    const service = pipeline(storageRoot, dispatch, new WorkerWriteFence(), telemetry);
 
     await expect(service.execute(fixture.payload)).resolves.toBe('handled');
     await expect(service.execute(fixture.payload)).resolves.toBe('handled');
@@ -158,7 +168,24 @@ describe('S12 image generation pipeline integration', () => {
       status: 'outcome_unknown',
       dispatchState: 'outcome_unknown',
       providerRequestId: 'provider-request-unknown',
+      rawErrorSummary: { transport_diagnostic: diagnostic },
     });
+    expect(telemetry.info).toHaveBeenCalledWith(
+      expect.objectContaining({
+        event: 'image_provider_dispatch_started',
+        task_id: fixture.generationTaskId,
+      }),
+    );
+    expect(telemetry.info).toHaveBeenCalledWith(
+      expect.objectContaining({
+        event: 'image_provider_dispatch_completed',
+        task_id: fixture.generationTaskId,
+        attempt_id: attempt?.id,
+        provider_request_id: 'provider-request-unknown',
+        transport_diagnostic: diagnostic,
+        automatic_retry_allowed: false,
+      }),
+    );
     expect(outputRows).toEqual([]);
   });
 
@@ -714,6 +741,7 @@ function pipeline(
   storageRoot: string,
   dispatch: ImageDispatcher,
   writeFence = new WorkerWriteFence(),
+  telemetry?: ConstructorParameters<typeof ImagePipelineService>[4],
 ) {
   const config = { ...integrationWorkerConfig, localUploadRoot: storageRoot };
   return new ImagePipelineService(
@@ -721,6 +749,7 @@ function pipeline(
     dispatch,
     new ImageOutputIngestService(resource.db, config, writeFence),
     writeFence,
+    telemetry,
   );
 }
 

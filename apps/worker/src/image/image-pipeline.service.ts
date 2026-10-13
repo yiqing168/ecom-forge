@@ -10,7 +10,10 @@ import {
   workflowRuns,
   type Database,
 } from '@ecom-forge/db';
-import type { ProviderImageExecutionOutcome } from '@ecom-forge/provider';
+import {
+  imageTransportDiagnosticSchema,
+  type ProviderImageExecutionOutcome,
+} from '@ecom-forge/provider';
 import type { QueuePayload } from '@ecom-forge/queue';
 
 import { WORKER_RUNTIME_DEFAULTS } from '../config/runtime-defaults.js';
@@ -140,6 +143,14 @@ export class ImagePipelineService {
         return 'handled';
       }
       const dispatchStartedAt = Date.now();
+      this.telemetry.info({
+        event: 'image_provider_dispatch_started',
+        trace_id: payload.trace_id,
+        workflow_run_id: owned.workflow.id,
+        task_id: owned.task.id,
+        attempt_id: allocation.attempt.id,
+        retry_no: retryNo,
+      });
       try {
         outcome = await this.dispatcher({
           taskId: owned.task.id,
@@ -170,15 +181,34 @@ export class ImagePipelineService {
         }
         return 'handled';
       }
+      const transportDiagnostic =
+        outcome.kind === 'outcome_unknown'
+          ? imageTransportDiagnosticSchema.safeParse(outcome.transport_diagnostic)
+          : undefined;
       this.telemetry.info({
         event: 'image_provider_dispatch_completed',
         metric: 'image_provider_dispatch_total',
         trace_id: payload.trace_id,
+        workflow_run_id: owned.workflow.id,
+        task_id: owned.task.id,
         task_id_hash: telemetryId(owned.task.id),
         attempt_id: allocation.attempt.id,
         outcome: outcome.kind,
         duration_ms: Date.now() - dispatchStartedAt,
         retry_no: retryNo,
+        ...('error_code' in outcome ? { error_code: outcome.error_code } : {}),
+        ...('provider_request_id' in outcome &&
+        outcome.provider_request_id &&
+        /^[A-Za-z0-9._:-]{1,256}$/.test(outcome.provider_request_id)
+          ? { provider_request_id: outcome.provider_request_id }
+          : {}),
+        ...(outcome.kind === 'outcome_unknown'
+          ? {
+              diagnostic_code: outcome.diagnostic_code ?? null,
+              transport_diagnostic: transportDiagnostic?.success ? transportDiagnostic.data : null,
+              automatic_retry_allowed: false,
+            }
+          : {}),
       });
 
       if (outcome.kind !== 'not_dispatched') break;
@@ -493,6 +523,9 @@ export class ImagePipelineService {
     diagnostics?: Extract<ProviderImageExecutionOutcome, { kind: 'outcome_unknown' }>,
   ): Promise<void> {
     this.writeFence.assertWritesAllowed();
+    const transportDiagnostic = imageTransportDiagnosticSchema.safeParse(
+      diagnostics?.transport_diagnostic,
+    );
     await this.database.transaction(async (transaction) => {
       const [attempt] = await transaction
         .select()
@@ -512,6 +545,9 @@ export class ImagePipelineService {
             ...(providerRequestId ? { providerRequestId } : {}),
             rawErrorSummary: {
               error_code: errorCode,
+              ...(transportDiagnostic.success
+                ? { transport_diagnostic: transportDiagnostic.data }
+                : {}),
               ...(diagnostics?.diagnostic_code
                 ? { diagnostic_code: diagnostics.diagnostic_code }
                 : {}),

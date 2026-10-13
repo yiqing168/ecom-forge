@@ -1,6 +1,8 @@
 import { Decimal } from 'decimal.js';
 import { z } from 'zod';
 
+import type { ImageTransportDiagnostic } from './image/transport-diagnostic.js';
+
 const decimalString = z
   .string()
   .regex(/^(?:0|[1-9]\d*)(?:\.\d+)?$/)
@@ -214,6 +216,7 @@ export class ProviderImageOutputLease {
 }
 
 type ProviderImageUnknownOutcome = Extract<ProviderSubmitOutcome, { kind: 'outcome_unknown' }> & {
+  transport_diagnostic?: ImageTransportDiagnostic;
   cost_summary?: Extract<ProviderSubmitOutcome, { kind: 'succeeded' }>['cost_summary'];
   diagnostic_code?:
     | 'response_body_invalid'

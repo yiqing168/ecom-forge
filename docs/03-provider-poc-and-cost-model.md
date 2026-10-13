@@ -1,5 +1,11 @@
 # 03 Provider PoC 与成本模型
 
+### 图片传输故障诊断（2026-10-13）
+
+图片 `outcome_unknown` 可附内部 `transport_diagnostic`：区分 `response_headers`、`response_body`、`output_headers`、`output_body` 和宿主 `dispatch` 阶段，记录阶段/总耗时、本地 abort/deadline 标志、可信 HTTP status 与静态白名单异常名/底层网络代码。cause 最多遍历四层并防循环；禁止原始 message、stack、URL、header、prompt 或图片内容。诊断结构由 Provider schema 校验，Worker 持久化到 attempt 安全错误摘要，并在结构化完成日志关联 trace/run/task/attempt 与已取得的 Provider request ID；未取得响应头时明确不能声称拥有上游 request ID。调用开始也记录关联 ID，便于识别未返回或进程退出的请求。
+
+诊断不改变三态、计费或重投规则；连接中断不能推断上游失败或未送达，不增加自动生图重试。中转后台显示成功并不证明本系统已收到结果；旧记录没有底层诊断时不得补造原因。
+
 | 项       | 内容                                                                      |
 | -------- | ------------------------------------------------------------------------- |
 | 状态     | v0.7 1A 生成动作与 Provider 前积分核对边界回写后可复审                    |

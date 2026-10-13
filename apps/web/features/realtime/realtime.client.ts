@@ -9,6 +9,7 @@ const WATCHDOG_TIMEOUT_MS = positiveClientInteger(
 const RETRY_DELAYS_MS = [1_000, 2_000, 4_000, 8_000, 15_000] as const;
 const POLL_VISIBLE_MS = 5_000;
 const POLL_HIDDEN_MS = 30_000;
+const SNAPSHOT_TIMEOUT_MS = 15_000;
 
 export type RealtimeConnectionStatus =
   'idle' | 'connecting' | 'live' | 'reconnecting' | 'recovered' | 'polling' | 'closed';
@@ -62,6 +63,9 @@ export class ScopedRealtimeClient<TSnapshot, TEvent extends RealtimeEvent> {
   private retryTimer: ReturnType<typeof setTimeout> | null = null;
   private retryWaiter: (() => void) | null = null;
   private onlineWaiter: (() => void) | null = null;
+  private detailRefreshInFlight = false;
+  private detailRefreshTimer: ReturnType<typeof setTimeout> | null = null;
+  private detailRefreshFailures = 0;
 
   constructor(private readonly options: ScopedRealtimeClientOptions<TSnapshot, TEvent>) {
     this.fetcher = options.fetcher ?? globalThis.fetch.bind(globalThis);
@@ -91,6 +95,8 @@ export class ScopedRealtimeClient<TSnapshot, TEvent extends RealtimeEvent> {
     this.controller?.abort();
     this.controller = null;
     this.clearPolling();
+    if (this.detailRefreshTimer) clearTimeout(this.detailRefreshTimer);
+    this.detailRefreshTimer = null;
     if (this.recoveryTimer) clearTimeout(this.recoveryTimer);
     if (this.retryTimer) clearTimeout(this.retryTimer);
     this.retryTimer = null;
@@ -219,14 +225,40 @@ export class ScopedRealtimeClient<TSnapshot, TEvent extends RealtimeEvent> {
     this.cursor = event.event_seq;
     this.markLive();
     if (this.options.refreshSnapshotAfterEvent?.(event)) {
-      void this.refreshSnapshot().catch(() => undefined);
+      void this.refreshEventDetails();
     }
+  }
+
+  private async refreshEventDetails(): Promise<void> {
+    if (this.stopped || this.detailRefreshInFlight || this.detailRefreshTimer) return;
+    this.detailRefreshInFlight = true;
+    try {
+      await this.refreshSnapshot();
+    } catch (error) {
+      if (this.stopped) return;
+      if (this.handleTerminalHttpError(error)) return;
+    } finally {
+      this.detailRefreshInFlight = false;
+    }
+    if (this.stopped) return;
+    if (this.snapshot && this.options.snapshotCursor(this.snapshot) >= this.cursor) {
+      this.detailRefreshFailures = 0;
+      return;
+    }
+    // A healthy stream only confirms delivery of events, not the richer task details.
+    const delay =
+      RETRY_DELAYS_MS[Math.min(this.detailRefreshFailures++, RETRY_DELAYS_MS.length - 1)]!;
+    this.detailRefreshTimer = setTimeout(() => {
+      this.detailRefreshTimer = null;
+      void this.refreshEventDetails();
+    }, delay);
   }
 
   private async refreshSnapshot(): Promise<void> {
     const response = await this.fetcher(`${apiOrigin}${this.options.snapshotUrl}`, {
       credentials: 'include',
       cache: 'no-store',
+      signal: AbortSignal.timeout(SNAPSHOT_TIMEOUT_MS),
     });
     if (!response.ok) throw new RealtimeHttpError(response.status);
     const payload: unknown = await response.json();

@@ -32,7 +32,7 @@ import { artifactAccessUrl, assetAccessUrl } from '@/lib/resource-api';
 
 import { ProductFactsCard } from './product-facts-card';
 import { resolveTurnRetryChain, type TurnRetryChainStatus } from './retry-chain';
-import type { WorkflowReviewState } from './workflow-public-state';
+import { projectWorkflowReviewState, type WorkflowReviewState } from './workflow-public-state';
 
 const RETRY_CHAIN_TURN_HEADERS: Record<Exclude<TurnRetryChainStatus, 'none'>, string> = {
   succeeded: '首次生成未成功，重试已成功',
@@ -495,11 +495,7 @@ function AgentProgressContent({
   workflowReviewState: WorkflowReviewState | null;
   workflowTasks: WorkflowSnapshot['tasks'];
 }) {
-  const terminal =
-    workflowReviewState !== null ||
-    status === 'completed' ||
-    status === 'failed' ||
-    status === 'stopped';
+  const terminal = status === 'completed' || status === 'failed' || status === 'stopped';
   return (
     <>
       {activities.length ? (
@@ -896,11 +892,16 @@ function ImageWorkflowSlots({
           const resultUnknown =
             ['waiting_manual_review', 'failed'].includes(resolved.task.status) &&
             resolved.task.latest_attempt?.status === 'outcome_unknown';
+          const slotReviewState = resolved.followedRetry
+            ? projectWorkflowReviewState(retrySnapshots[resolved.workflowRunId ?? ''] ?? null)
+            : reviewState;
+          const inReview =
+            resolved.task.status === 'waiting_manual_review' ||
+            (resolved.task.status === 'succeeded' && slotReviewState === 'content_review');
           const failed =
             resultUnknown ||
-            (reviewState === null &&
-              (['failed', 'cancelled'].includes(resolved.task.status) ||
-                (terminal && !resolved.followedRetry)));
+            ['failed', 'cancelled'].includes(resolved.task.status) ||
+            (terminal && !resolved.followedRetry && !inReview);
           const retrying = retryingTaskIds.has(resolved.task.id);
           return (
             <div
@@ -959,8 +960,8 @@ function ImageWorkflowSlots({
                     ) : null}
                   </span>
                 </div>
-              ) : reviewState ? (
-                <ImageReviewPlaceholder state={reviewState} />
+              ) : inReview ? (
+                <ImageReviewPlaceholder state={slotReviewState ?? 'result_confirmation'} />
               ) : (
                 <ImageGenerationPlaceholder aspectRatio={aspectRatio} />
               )}
@@ -1013,6 +1014,10 @@ function resolveRetrySlot(
         ...task,
         id: retry.task_id,
         status: retry.status,
+        error_code: null,
+        latest_attempt: null,
+        started_at: null,
+        ended_at: null,
         retryable: false,
         latest_retry: null,
       };

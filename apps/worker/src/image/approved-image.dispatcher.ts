@@ -13,6 +13,7 @@ import {
 } from '@ecom-forge/db';
 import {
   buildOpenAiImageSpecBindings,
+  imageTransportDiagnostic,
   imageProviderPromptMaxCharacters,
   imageSpecHasPocCoverage,
   mediaV2ModelSnapshotSchema,
@@ -176,6 +177,19 @@ export class ApprovedImageDispatcher {
         deadlineAt: admission.providerDeadlineAt,
         signal: controller.signal,
       };
+      this.telemetry.info({
+        event: 'image_provider_request_started',
+        trace_id: input.traceId,
+        workflow_run_id: input.workflowRunId,
+        task_id: input.taskId,
+        attempt_id: input.attemptId,
+        model_snapshot_id: binding.model.id,
+        operation: params.operation,
+        resolution_tier: params.resolution_tier,
+        output_count: params.output_count,
+        request_timeout_ms: this.config.imageProviderRequestTimeoutMs,
+        deadline_at: context.deadlineAt.toISOString(),
+      });
       const transport = binding.adapter.execute(
         {
           capability: params.operation,
@@ -465,15 +479,28 @@ export async function settleByDeadline(
 }> {
   let timer: NodeJS.Timeout | undefined;
   let timedOut = false;
-  const settledTransport = transport.catch(() =>
-    unknownOutcome(requestDigest, 'provider_internal_error'),
-  );
+  const startedAt = Date.now();
+  const diagnostic = (error: unknown) =>
+    imageTransportDiagnostic(error, {
+      phase: 'dispatch',
+      startedAt,
+      requestStartedAt: startedAt,
+      signal: controller.signal,
+      deadlineAt,
+    });
+  const settledTransport = transport.catch((error: unknown) => ({
+    ...unknownOutcome(requestDigest, 'provider_internal_error'),
+    transport_diagnostic: diagnostic(error),
+  }));
   const timeout = new Promise<ProviderImageExecutionOutcome>((resolve) => {
     timer = setTimeout(
       () => {
         timedOut = true;
         controller.abort(new Error('Image Provider deadline exceeded'));
-        resolve(unknownOutcome(requestDigest, 'provider_timeout'));
+        resolve({
+          ...unknownOutcome(requestDigest, 'provider_timeout'),
+          transport_diagnostic: diagnostic(undefined),
+        });
       },
       Math.max(0, deadlineAt.getTime() - Date.now()),
     );
@@ -601,7 +628,7 @@ function notDispatched(
 function unknownOutcome(
   requestDigest: string,
   errorCode: 'provider_timeout' | 'provider_internal_error',
-): ProviderImageExecutionOutcome {
+): Extract<ProviderImageExecutionOutcome, { kind: 'outcome_unknown' }> {
   return {
     kind: 'outcome_unknown',
     error_code: errorCode,

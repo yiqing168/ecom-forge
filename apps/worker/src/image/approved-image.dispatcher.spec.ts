@@ -299,6 +299,7 @@ describe('image Provider admission', () => {
     expect(execution.outcome).toMatchObject({
       kind: 'outcome_unknown',
       error_code: 'provider_timeout',
+      transport_diagnostic: { phase: 'dispatch', aborted: true, deadline_exceeded: true },
     });
     expect(controller.signal.aborted).toBe(true);
 

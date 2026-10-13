@@ -29,6 +29,10 @@ export {
 } from './contracts.js';
 export { ProviderImageOutputLease } from './contracts.js';
 export {
+  imageTransportDiagnostic,
+  imageTransportDiagnosticSchema,
+} from './image/transport-diagnostic.js';
+export {
   ProviderGateway,
   ProviderGatewayError,
   ProviderModerationRecordingError,
